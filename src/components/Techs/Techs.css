@@ -1,8 +1,8 @@
 .techs {
    max-width: 1280px;
-   min-height: 625px;
    background: #F5F5F5;
    margin: 0 auto;
+   padding-bottom: 100px;
 }
 
 .techs__title {
