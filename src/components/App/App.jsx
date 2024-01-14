@@ -1,22 +1,19 @@
 import './App.css';
-import Header from '../Header/Header';
-import Promo from '../Promo/Promo';
-import AboutProject from '../AboutProject/AboutProject';
-import Techs from '../Techs/Techs';
-import AboutMe from '../AboutMe/AboutMe';
-import Portfolio from '../Portfolio/Portfolio';
-import Footer from '../Footer/Footer';
+import { Route, Routes } from 'react-router-dom';
+import Main from '../Main/Main';
+import Register from '../Register/Register';
+import PageNotFound from '../PageNotFound/PageNotFound';
+import Login from '../Login/Login';
 
 function App() {
   return (
     <div className="page">
-      <Header />
-      <Promo />
-      <AboutProject />
-      <Techs />
-      <AboutMe />
-      <Portfolio />
-      <Footer />
+      <Routes>
+        <Route path='/' element={<Main />} />
+        <Route path='/signup' element={<Register />} />
+        <Route path='/signin' element={<Login />} />
+        <Route path='*' element={<PageNotFound />} />
+      </Routes>
     </div>
   );
 }

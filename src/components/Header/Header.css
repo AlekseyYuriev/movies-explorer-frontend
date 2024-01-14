@@ -21,22 +21,19 @@
 }
 
 .header__signup {
-   box-sizing: border-box;
-   border: none;
+   text-decoration: none;
    padding: 0;
-   background-color: transparent;
    color: #FFF;
-   font-family: Inter;
    font-size: 12px;
    font-style: normal;
    font-weight: 500;
    line-height: 16px;
    cursor: pointer;
+   margin: auto 0;
 }
 
 .header__signin {
-   box-sizing: border-box;
-   border: none;
+   text-decoration: none;
    margin: auto 70px auto 30px;
    padding: 0;
    width: 76px;
@@ -44,12 +41,14 @@
    border-radius: 3px;
    background-color: #2BE080;
    color: #000;
-   font-family: Inter;
    font-size: 12px;
    font-style: normal;
    font-weight: 500;
    line-height: 16px;
    cursor: pointer;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
 .link {

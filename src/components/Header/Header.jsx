@@ -9,8 +9,8 @@ export default function Header () {
             <img src={headerLogo} alt='Логотип проекта' />
          </Link>
          <div className='header__content'>
-            <button className='header__signup link'>Регистрация</button>
-            <button className='header__signin link'>Войти</button>
+            <Link to='/signup' className='header__signup link'>Регистрация</Link>
+            <Link to='/signin' className='header__signin link'>Войти</Link>
          </div>
       </header>
    )
