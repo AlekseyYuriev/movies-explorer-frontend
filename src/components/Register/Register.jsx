@@ -18,7 +18,7 @@ export default function Register () {
                      id="name"
                      name="name" 
                      type="text" />
-                  <div className='name-error register__input-error'></div>
+                  <div className='register__input-error'></div>
                </label>
                <label className='register__label'>
                   E-mail
@@ -27,7 +27,7 @@ export default function Register () {
                      id="email"
                      name="email" 
                      type="email" />
-                  <div className='email-error register__input-error'></div>
+                  <div className='register__input-error'></div>
                </label>
                <label className='register__label'>
                   Пароль
@@ -36,7 +36,7 @@ export default function Register () {
                      id="password"
                      name="password" 
                      type="password" />
-                  <div className='password-error register__input-error'>Что-то пошло не так...</div>
+                  <div className='register__input-error'>Что-то пошло не так...</div>
                </label>
                <button type='submit' className='register__button'>Зарегистрироваться</button>
                <p className='register__text'>

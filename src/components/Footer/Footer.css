@@ -6,7 +6,7 @@
    flex-direction: column;
 }
 
-.footer_text {
+.footer__text {
    margin: 79px auto 20px;
    max-width: 320px;
    color: #A0A0A0;

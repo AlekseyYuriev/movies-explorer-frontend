@@ -18,7 +18,7 @@ export default function Login () {
                      id="email"
                      name="email" 
                      type="email" />
-                  <div className='email-error login__input-error'></div>
+                  <div className='login__input-error'></div>
                </label>
                <label className='login__label'>
                   Пароль
@@ -27,7 +27,7 @@ export default function Login () {
                      id="password"
                      name="password" 
                      type="password" />
-                  <div className='password-error login__input-error'></div>
+                  <div className='login__input-error'></div>
                </label>
                <button type='submit' className='login__button'>Войти</button>
                <p className='login__text'>
