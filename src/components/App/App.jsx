@@ -6,6 +6,8 @@ import Register from '../Register/Register';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
+import Movies from '../Movies/Movies';
+import SavedMovies from '../SavedMovies/SavedMovies';
 
 function App() {
 
@@ -26,6 +28,10 @@ function App() {
           element={<Profile
           loggedIn={loggedIn}
           />} />
+          <Route path='/movies' element={<Movies
+            loggedIn={loggedIn}
+            />} />
+          <Route path='/saved-movies' element={<SavedMovies />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </div>
