@@ -1,5 +1,6 @@
 import './Promo.css';
 import promoLogo from '../../images/promo-logo.svg';
+import { Link } from 'react-scroll';
 
 export default function Promo () {
    return (
@@ -11,7 +12,7 @@ export default function Promo () {
          </div>
          <img src={promoLogo} className='promo__logo' alt='Мир веб-разрабоки'/>
       </div>
-      <button className='promo__button'>Узнать больше</button>
+      <Link className='promo__button' to="about-project" smooth={true}>Узнать больше</Link>
       </section>
    )
 }
