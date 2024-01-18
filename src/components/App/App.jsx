@@ -31,7 +31,9 @@ function App() {
           <Route path='/movies' element={<Movies
             loggedIn={loggedIn}
             />} />
-          <Route path='/saved-movies' element={<SavedMovies />} />
+          <Route path='/saved-movies' element={<SavedMovies 
+            loggedIn={loggedIn}
+            />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </div>
