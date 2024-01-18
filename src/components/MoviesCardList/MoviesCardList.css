@@ -7,7 +7,7 @@
 }
 
 .cards__list {
-   padding-bottom: 61px;
+   padding-bottom: 53px;
    display: grid;
    grid-template-columns: repeat(4, minmax(270px, 1fr));
    gap: 20px;
@@ -24,6 +24,11 @@
    border: none;
    background-color: transparent;
    cursor: pointer;
+   color: #000;
+   font-size: 12px;
+   font-style: normal;
+   font-weight: 500;
+   line-height: normal;
 }
 
 .cards__button:hover {

@@ -15,7 +15,9 @@ export default function Profile ({ loggedIn }) {
                         className='profile__input' 
                         id="email"
                         name="email" 
-                        type="email" />
+                        type="email"
+                        placeholder='Виталий'
+                        />
                   </label>
                   <div className='profile__input-error profile__input-error_name'></div>
                   <label className='profile__label'>
@@ -24,7 +26,9 @@ export default function Profile ({ loggedIn }) {
                         className='profile__input' 
                         id="password"
                         name="password" 
-                        type="email" />
+                        type="email" 
+                        placeholder='pochta@yandex.ru'
+                        />
                   </label>
                   <div className='profile__input-error profile__input-error_email'></div>
                   <button type='submit' className='profile__button'>Редактировать</button>
