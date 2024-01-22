@@ -84,3 +84,27 @@
    font-weight: 400;
    line-height: normal;
 }
+
+@media screen and (max-width: 920px) {
+   .card {
+      max-width: 339px;
+   }
+   
+   .card__image {
+      max-width: 339px;
+      height: 190px;
+   }
+
+   .card__name {
+      max-width: 295px;
+   }
+   
+   .card__duration {
+      margin: 6px 0 0;
+      color: #A0A0A0;
+      font-size: 11px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+   }
+}

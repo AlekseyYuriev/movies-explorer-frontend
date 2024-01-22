@@ -57,11 +57,19 @@ export default function Header ({ loggedIn }) {
                   <Link to='/profile' className='header__profile link'>
                         <img src={location.pathname===`/` ? profile : profileMovies} alt='Профиль' />
                   </Link>
-                  <button className={isOpen ? 'header__nav-button clicked' : 'header__nav-button'} onClick={burgerMenu}>
-                     <span className={isOpen ? 'header__nav-button_icon clicked' : 'header__nav-button_icon'}></span>
-                     <span className={isOpen ? 'header__nav-button_icon clicked' : 'header__nav-button_icon'}></span>
-                     <span className={isOpen ? 'header__nav-button_icon clicked' : 'header__nav-button_icon'}></span>
-                  </button>
+                  {location.pathname===`/` ? (
+                     <button className={isOpen ? 'header__nav-button clicked' : 'header__nav-button'} onClick={burgerMenu}>
+                        <span className={isOpen ? 'header__nav-button_icon clicked' : 'header__nav-button_icon'}></span>
+                        <span className={isOpen ? 'header__nav-button_icon clicked' : 'header__nav-button_icon'}></span>
+                        <span className={isOpen ? 'header__nav-button_icon clicked' : 'header__nav-button_icon'}></span>
+                     </button>
+                  ) : (
+                     <button className={isOpen ? 'header__nav-button_movies clicked' : 'header__nav-button_movies'} onClick={burgerMenu}>
+                        <span className={isOpen ? 'header__nav-button_icon clicked' : 'header__nav-button_icon movies'}></span>
+                        <span className={isOpen ? 'header__nav-button_icon clicked' : 'header__nav-button_icon movies'}></span>
+                        <span className={isOpen ? 'header__nav-button_icon clicked' : 'header__nav-button_icon movies'}></span>
+                     </button>
+                  )}
                </>
             )}
          </header>

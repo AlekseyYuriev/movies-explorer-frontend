@@ -8,7 +8,6 @@
 .about-project__title {
    margin: 110px 0 23px 70px;
    color: #000;
-   font-family: Inter;
    font-size: 22px;
    font-style: normal;
    font-weight: 400;
@@ -29,7 +28,6 @@
 .about-project__content_title {
    margin: 70px 0 26px 0;
    color: #000;
-   font-family: Inter;
    font-size: 20px;
    font-style: normal;
    font-weight: 400;
@@ -40,7 +38,6 @@
 .about-project__content_text {
    margin: 0 0 110px 0;
    color: #000;
-   font-family: Inter;
    font-size: 14px;
    font-style: normal;
    font-weight: 400;
@@ -65,7 +62,6 @@
    background-color: #F2F2F2;
    color: #000;
    text-align: center;
-   font-family: Inter;
    font-size: 14px;
    font-style: normal;
    font-weight: 400;
@@ -87,4 +83,47 @@
    font-style: normal;
    font-weight: 500;
    line-height: 17px;
+}
+
+@media screen and (max-width: 920px) {
+   .about-project {
+      max-width: 768px;
+      padding-bottom: 90px;
+   }
+   
+   .about-project__title {
+      margin: 90px 0 23px 50px;
+   }
+   
+   .about-project__content {
+      max-width: 768px;
+      margin: 0 50px;
+      column-gap: 30px;
+   }
+   
+   .about-project__content_title {
+      margin: 70px 0 22px 0;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: -0.8px;
+   }
+   
+   .about-project__content_text {
+      margin: 0 0 93px 0;
+      font-size: 12px;
+      line-height: 18px;
+   }
+   
+   .about-project__duration {
+      max-width: 768px;
+      margin: 0 50px;
+      grid-template-columns: minmax(100px, 140px) minmax(184px, 528px);
+      row-gap: 14px;
+   }
+   
+   .about-project__duration_text {
+      font-weight: 400;
+   }
 }

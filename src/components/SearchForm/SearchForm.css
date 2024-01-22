@@ -50,3 +50,18 @@
 .searchform__button:hover {
    opacity: 0.7;
 }
+
+@media screen and (max-width: 920px) {
+   .searchform {
+      padding: 0 30px;
+      margin: 80px auto 61px;
+   }
+   
+   .searchform__form {
+      margin-bottom: 30px;
+   }
+   
+   .searchform__input {
+      max-width: 600px;
+   }
+}

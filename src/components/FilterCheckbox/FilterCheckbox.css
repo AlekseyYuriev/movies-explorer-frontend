@@ -4,7 +4,14 @@
 }
 
 .filter__switch {
-   display: inline-block;
+   display: flex;
+   flex-direction: row-reverse;
+   position: relative;
+   color: #000;
+   font-size: 13px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: 18px;
 }
 
 .filter__checkbox {
@@ -19,11 +26,6 @@
    display: inline-block;
    position: relative;
    padding-left: 50px;
-   color: #000;
-   font-size: 13px;
-   font-style: normal;
-   font-weight: 400;
-   line-height: 18px;
 }
 
 .filter__checkbox-button:hover {
@@ -63,4 +65,20 @@
 
 .filter__checkbox:checked + .filter__checkbox-button::after {
    left: 21px;
+}
+
+@media screen and (max-width: 920px) {
+   .filter {
+      flex-direction: row-reverse;
+   }
+   
+   .filter__switch {
+      width: 169px;
+      flex-direction: row;
+      justify-content: space-between;
+   }
+   
+   .filter__checkbox-button {
+      padding-left: 35px;
+   }
 }
