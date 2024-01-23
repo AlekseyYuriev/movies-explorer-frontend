@@ -114,3 +114,43 @@
    cursor: pointer;
    opacity: 0.7;
 }
+
+@media screen and (max-width: 920px) {
+   .login {
+      margin: 232px auto;
+   }
+}
+
+@media screen and (max-width: 400px) {
+   .login {
+      margin: 56px auto 30px;
+      text-align: center;
+   }
+   
+   .login__title {
+      margin: 47px auto 80px;
+   }
+
+   .login__fieldset {
+      max-width: 260px;
+      text-align: start;
+      margin: 0 auto;
+   }
+
+   .login__input {
+      max-width: 260px;
+   }
+
+   .login__button {
+      margin: 285px 0 14px;
+      font-size: 12px;
+   }
+
+   .login__text {
+      font-size: 12px;
+   }
+   
+   .login__redirect {
+      font-size: 12px;
+   }
+}

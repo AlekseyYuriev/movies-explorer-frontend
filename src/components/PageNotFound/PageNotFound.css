@@ -10,7 +10,6 @@
 
 .notfound__title {
    color: #000;
-   font-family: Inter;
    font-size: 140px;
    font-style: normal;
    font-weight: 400;
@@ -20,7 +19,6 @@
 
 .notfound__text {
    color: #000;
-   font-family: Inter;
    font-size: 16px;
    font-style: normal;
    font-weight: 400;
@@ -31,10 +29,43 @@
 .notfound__link {
    text-decoration: none;
    color: #3456F3;
-   font-family: Inter;
    font-size: 14px;
    font-style: normal;
    font-weight: 400;
    line-height: normal;
    margin: 184px auto 60px;
+}
+
+@media screen and (max-width: 920px) {
+   .notfound {
+      max-width: 768px;
+   }
+
+   .notfound__title {
+      margin: 408px auto 5px;
+   }
+
+   .notfound__link {
+      margin: 184px auto 222px;
+   }
+}
+
+@media screen and (max-width: 400px) {
+   .notfound {
+      max-width: 328px;
+   }
+
+   .notfound__title {
+      margin: 329px auto 10px;
+      font-size: 80px;
+   }
+
+   .notfound__text {
+      font-size: 12px;
+   }
+
+   .notfound__link {
+      margin: 284px auto 30px;
+      font-size: 12px;
+   }
 }

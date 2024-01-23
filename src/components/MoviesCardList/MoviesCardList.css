@@ -48,10 +48,23 @@
       max-width: 768px;
       padding: 70px 30px 118px;
    }
-   
+}
+
+@media screen and (max-width: 768px) {
+   .cards {
+      align-items: center;
+   }
+}
+
+@media screen and (max-width: 400px) {
+   .cards {
+      max-width: 320px;
+      padding: 40px 10px 89px;
+   }
+
    .cards__list {
       padding-bottom: 71px;
-      grid-template-columns: repeat(auto-fit, minmax(339px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 34px;
    }
 }

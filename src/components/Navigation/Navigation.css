@@ -60,3 +60,13 @@
       margin-bottom: 90px;
    }
 }
+
+@media screen and (max-width: 320px) {
+   .header-nav__items {
+      padding: 144px 0 28px;
+   }
+
+   .header-nav__profile {
+      margin-bottom: 46px;
+   }
+}

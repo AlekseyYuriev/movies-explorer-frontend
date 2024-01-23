@@ -114,3 +114,43 @@
    cursor: pointer;
    opacity: 0.7;
 }
+
+@media screen and (max-width: 920px) {
+   .register {
+      margin: 232px auto;
+   }
+}
+
+@media screen and (max-width: 400px) {
+   .register {
+      margin: 56px auto 30px;
+      text-align: center;
+   }
+
+   .register__title {
+      margin: 47px auto 80px;
+   }
+
+   .register__fieldset {
+      max-width: 260px;
+      text-align: start;
+      margin: 0 auto;
+   }
+
+   .register__input {
+      max-width: 260px;
+   }
+
+   .register__button {
+      margin: 217px 0 14px;
+      font-size: 12px;
+   }
+
+   .register__text {
+      font-size: 12px;
+   }
+   
+   .register__redirect {
+      font-size: 12px;
+   }
+}

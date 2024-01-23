@@ -82,3 +82,18 @@
       padding-left: 35px;
    }
 }
+
+@media screen and (max-width: 400px) {
+   .filter {
+      justify-content: center;
+   }
+   
+   .filter__switch {
+      width: 147px;
+      font-size: 11px;
+   }
+   
+   .filter__checkbox-button {
+      padding-left: 34px;
+   }
+}

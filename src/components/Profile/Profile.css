@@ -99,3 +99,47 @@
    font-weight: 500;
    margin: 16px auto 0;
 }
+
+@media screen and (max-width: 920px) {
+   .profile {
+      margin: 236px auto 269px;
+   }
+   
+   .profile__title {
+      margin: 0 auto 96px;
+   }
+   
+   .profile__button {
+      margin-top: 200px;
+   }
+}
+
+@media screen and (max-width: 400px) {
+   .profile {
+      max-width: 320px;
+      margin: 70px auto 40px;
+   }
+   
+   .profile__title {
+      margin: 0 auto 80px;
+   }
+
+   .profile__fieldset {
+      margin: 0 auto;
+      max-width: 260px;
+   }
+
+   .profile__input {
+      max-width: 122px;
+      font-weight: 500;
+   }
+   
+   .profile__button {
+      margin: 372px 0 16px 0;
+      font-size: 12px;
+   }
+
+   .profile__button-signout {
+      margin: 0 auto;
+   }
+}
