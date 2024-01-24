@@ -32,7 +32,7 @@
    flex-direction: column;
 }
 
-.about-me__info_name {
+.about-me__name {
    margin: 0 0 18px 0;
    color: #000;
    font-size: 50px;
@@ -42,7 +42,7 @@
    letter-spacing: -2px;
 }
 
-.about-me__info_description {
+.about-me__description {
    margin: 0 0 26px 0;
    color: #000;
    font-size: 18px;
@@ -51,7 +51,7 @@
    line-height: 20px;
 }
 
-.about-me__info_text {
+.about-me__text {
    margin: 0;
    color: #000;
    font-size: 14px;
@@ -60,7 +60,7 @@
    line-height: 22px;
 }
 
-.about-me__info_link {
+.about-me__link {
    margin: auto 0 0;
    text-decoration: none;
    max-width: 50px;
@@ -72,7 +72,7 @@
    transition: all 0.3s;
 }
 
-.about-me__info_link:hover {
+.about-me__link:hover {
    opacity: 0.7;
 }
 
@@ -103,20 +103,20 @@
       min-height: 307px;
    }
    
-   .about-me__info_name {
+   .about-me__name {
       margin: 0 0 16px 0;
       font-size: 40px;
       line-height: 40px;
       letter-spacing: -1.6px;
    }
    
-   .about-me__info_description {
+   .about-me__description {
       margin: 0 0 20px 0;
       font-size: 12px;
       line-height: 18px;
    }
    
-   .about-me__info_text {
+   .about-me__text {
       font-size: 12px;
       line-height: 18px;
    }
@@ -157,25 +157,25 @@
       min-height: 0;
    }
 
-   .about-me__info_name {
+   .about-me__name {
       margin: 40px 0 20px 0;
       font-size: 30px;
       line-height: normal;
       letter-spacing: -1.2px;
    }
 
-   .about-me__info_description {
+   .about-me__description {
       margin: 0 0 20px 0;
       font-size: 11px;
       line-height: 16px;
    }
 
-   .about-me__info_text {
+   .about-me__text {
       font-size: 11px;
       line-height: 16px;
    }
 
-   .about-me__info_link {
+   .about-me__link {
       margin: 40px 0 0;
       max-width: 46px;
    }

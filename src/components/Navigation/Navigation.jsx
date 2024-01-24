@@ -9,13 +9,13 @@ export default function Navigation () {
       <nav className='header-nav__list'>
          <ul className='header-nav__items'>
             <li>
-               <Link to='/' className='header-nav__items_link'>Главная</Link>
+               <Link to='/' className='header-nav__link'>Главная</Link>
             </li>
             <li>
-               <Link to='/movies' className='header-nav__items_link'>Фильмы</Link>
+               <Link to='/movies' className='header-nav__link'>Фильмы</Link>
             </li>
             <li>
-               <Link to='/saved-movies' className='header-nav__items_link'>Сохранённые фильмы</Link>
+               <Link to='/saved-movies' className='header-nav__link'>Сохранённые фильмы</Link>
             </li>
          </ul>
          <Link to='/profile' className='header-nav__profile'>

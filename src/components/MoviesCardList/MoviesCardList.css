@@ -11,6 +11,7 @@
    display: grid;
    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
    gap: 20px;
+   place-items: center;
 }
 
 .cards__button {
@@ -50,7 +51,7 @@
    }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 760px) {
    .cards {
       align-items: center;
    }

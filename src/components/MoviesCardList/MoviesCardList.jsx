@@ -8,10 +8,10 @@ export default function MoviesCardList () {
       <section className='cards'>
          <div className='cards__list'>
             {movies.map(movie => 
-               <MoviesCard movie={movie.movie} text={movie.text} key={movie.id} saved={movie.saved}/>
+               <MoviesCard movie={movie.movie} text={movie.text} key={movie.id} saved={movie.saved} alt={movie.alt}/>
             )}
          </div>
-         <button className='cards__button'>Ещё</button>
+         <button type='button' className='cards__button'>Ещё</button>
       </section>
    )
 }

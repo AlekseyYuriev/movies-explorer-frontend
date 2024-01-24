@@ -24,7 +24,7 @@
    line-height: 58px;
 }
 
-.header__title_span {
+.promo__span {
    margin-right: 250px;
 }
 
@@ -61,8 +61,12 @@
    font-weight: 500;
    line-height: 16px;
    background-color: transparent;
-   opacity: 0.6;
    cursor: pointer;
+   transition: all 0.3s;
+}
+
+.promo__button:hover {
+   opacity: 0.6;
 }
 
 @media screen and (max-width: 925px) {
@@ -95,7 +99,7 @@
       text-align: center;
    }
 
-   .header__title_span {
+   .promo__span {
       margin: 0;
    }
 

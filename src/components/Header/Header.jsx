@@ -39,7 +39,7 @@ export default function Header ({ loggedIn }) {
                         <li>
                            <Link 
                               to='/movies'
-                              className={location.pathname===`/` ? 'header__content-movies_link link' : 'header__content-movies_link header__content-movies_link-dark link'}
+                              className={location.pathname===`/` ? 'header__content-link link' : 'header__content-link header__content-link_dark link'}
                               >
                               Фильмы
                            </Link>
@@ -47,7 +47,7 @@ export default function Header ({ loggedIn }) {
                         <li>
                            <Link 
                               to='/saved-movies'
-                              className={location.pathname===`/` ? 'header__content-movies_link link' : 'header__content-movies_link header__content-movies_link-dark link'}
+                              className={location.pathname===`/` ? 'header__content-link link' : 'header__content-link header__content-link_dark link'}
                               >
                               Сохранённые фильмы
                            </Link>
@@ -55,27 +55,27 @@ export default function Header ({ loggedIn }) {
                      </ul>
                   </nav>
                   <Link to='/profile' className='header__profile link'>
-                        <img src={location.pathname===`/` ? profile : profileMovies} alt='Профиль' />
+                        <img className='header__profile-image' src={location.pathname===`/` ? profile : profileMovies} alt='Профиль' />
                   </Link>
                   {location.pathname===`/` ? (
-                     <button className={isOpen ? 'header__nav-button clicked' : 'header__nav-button'} onClick={burgerMenu}>
-                        <span className={isOpen ? 'header__nav-button_icon clicked' : 'header__nav-button_icon'}></span>
-                        <span className={isOpen ? 'header__nav-button_icon clicked' : 'header__nav-button_icon'}></span>
-                        <span className={isOpen ? 'header__nav-button_icon clicked' : 'header__nav-button_icon'}></span>
+                     <button type='button' className={isOpen ? 'header__nav-button opened' : 'header__nav-button'} onClick={burgerMenu}>
+                        <span className={isOpen ? 'header__nav-icon clicked' : 'header__nav-icon'}></span>
+                        <span className={isOpen ? 'header__nav-icon clicked' : 'header__nav-icon'}></span>
+                        <span className={isOpen ? 'header__nav-icon clicked' : 'header__nav-icon'}></span>
                      </button>
                   ) : (
-                     <button className={isOpen ? 'header__nav-button_movies clicked' : 'header__nav-button_movies'} onClick={burgerMenu}>
-                        <span className={isOpen ? 'header__nav-button_icon clicked' : 'header__nav-button_icon movies'}></span>
-                        <span className={isOpen ? 'header__nav-button_icon clicked' : 'header__nav-button_icon movies'}></span>
-                        <span className={isOpen ? 'header__nav-button_icon clicked' : 'header__nav-button_icon movies'}></span>
+                     <button type='button' className={isOpen ? 'header__nav-button header__nav-button_movies opened' : 'header__nav-button header__nav-button_movies'} onClick={burgerMenu}>
+                        <span className={isOpen ? 'header__nav-icon clicked' : 'header__nav-icon movies'}></span>
+                        <span className={isOpen ? 'header__nav-icon clicked' : 'header__nav-icon movies'}></span>
+                        <span className={isOpen ? 'header__nav-icon clicked' : 'header__nav-icon movies'}></span>
                      </button>
                   )}
                </>
             )}
+            {isOpen && (
+               <Navigation />
+            )}
          </header>
-         {isOpen && (
-            <Navigation />
-         )}
       </>
    )
 }

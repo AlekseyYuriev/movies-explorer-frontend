@@ -1,7 +1,6 @@
 .footer {
    max-width: 1280px;
    background: #FFF;
-   margin: 0 auto;
    display: flex;
    flex-direction: column;
 }
@@ -23,7 +22,7 @@
    border-top: 1px solid #E8E8E8;
 }
 
-.footer__content_year {
+.footer__year {
    margin: 20px 0;
    color: #000;
    font-size: 13px;
@@ -95,7 +94,7 @@
       font-size: 12px;
    }
 
-   .footer__content_year {
+   .footer__year {
       margin: 10px 0 20px;
       color: #A0A0A0;
       font-size: 12px;

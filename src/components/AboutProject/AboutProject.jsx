@@ -5,16 +5,16 @@ export default function AboutProject () {
       <section className='about-project'>
          <h2 className='about-project__title'>О проекте</h2>
          <div className='about-project__content'>
-            <h3 className='about-project__content_title'>Дипломный проект включал 5 этапов</h3>
-            <p className='about-project__content_text'>Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.</p>
-            <h3 className='about-project__content_title'>На выполнение диплома ушло 5 недель</h3>
-            <p className='about-project__content_text'>У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
+            <h3 className='about-project__content-title'>Дипломный проект включал 5 этапов</h3>
+            <p className='about-project__text'>Составление плана, работу над бэкендом, вёрстку, добавление функциональности и финальные доработки.</p>
+            <h3 className='about-project__content-title'>На выполнение диплома ушло 5 недель</h3>
+            <p className='about-project__text'>У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
          </div>
          <div className='about-project__duration'>
-            <p className='about-project__duration_title about-project__duration_backend'>1 неделя</p>
-            <p className='about-project__duration_title'>4 недели</p>
-            <p className='about-project__duration_text'>Back-end</p>
-            <p className='about-project__duration_text'>Front-end</p>
+            <p className='about-project__duration-title about-project__duration-title_backend'>1 неделя</p>
+            <p className='about-project__duration-title'>4 недели</p>
+            <p className='about-project__duration-text'>Back-end</p>
+            <p className='about-project__duration-text'>Front-end</p>
          </div>
       </section>
    )

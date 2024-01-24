@@ -95,6 +95,7 @@
 }
 
 .profile__button-signout {
+   text-decoration: none;
    color: #FF3055;
    font-weight: 500;
    margin: 16px auto 0;
@@ -111,6 +112,12 @@
    
    .profile__button {
       margin-top: 200px;
+   }
+
+   .profile__button-signout {
+      color: #FF3055;
+      font-weight: 500;
+      margin: 16px auto 0;
    }
 }
 

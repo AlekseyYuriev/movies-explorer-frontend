@@ -6,10 +6,12 @@ export default function SearchForm () {
    return (
       <section className="searchform">
          <form className="searchform__form" name="search-movies">
-            <input className="searchform__input" type="text" placeholder="Фильм" name="find-movie"/>
-            <button className="searchform__button" type="submit">Найти</button>
+            <div className="searchform__window" >
+               <input required className="searchform__input" type="text" placeholder="Фильм" name="find-movie"/>
+               <button className="searchform__button" type="submit">Найти</button>
+            </div>
+            <FilterCheckbox />
          </form>
-         <FilterCheckbox />
    </section>
    )
 }

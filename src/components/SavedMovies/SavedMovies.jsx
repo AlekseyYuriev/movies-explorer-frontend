@@ -10,14 +10,16 @@ export default function SavedMovies ({ loggedIn }) {
    return (
       <>
          <Header loggedIn={loggedIn} />
-         <SearchForm />
-         <section className="savedmovies">
-            <div className="savedmovies__list">
-               {cards.map(card => 
-               <MoviesCard movie={card.movie} text={card.text} key={card.id}/>
-               )}
-            </div>
-         </section>
+         <main>
+            <SearchForm />
+            <section className="savedmovies">
+               <div className="savedmovies__list">
+                  {cards.map(card => 
+                  <MoviesCard movie={card.movie} text={card.text} key={card.id} alt={card.alt}/>
+                  )}
+               </div>
+            </section>
+            </main>
          <Footer />
       </>
    )

@@ -7,7 +7,7 @@ export default function Promo () {
       <section className="promo">
       <div className='promo__content'>
          <div className='promo__text'>
-            <h1 className='promo__title'>Учебный проект студента <span className='header__title_span'>факультета</span> Веб-разработки.</h1>
+            <h1 className='promo__title'>Учебный проект студента <span className='promo__span'>факультета</span> Веб-разработки.</h1>
             <p className='promo__info'>Листайте ниже, чтобы узнать больше про этот проект и его создателя.</p>
          </div>
          <img src={promoLogo} className='promo__logo' alt='Мир веб-разрабоки'/>

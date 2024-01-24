@@ -9,7 +9,7 @@
 .savedmovies__list {
    padding-bottom: 82px;
    display: grid;
-   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+   grid-template-columns: repeat(4, minmax(270px, 1fr));
    gap: 20px;
 }
 
@@ -17,6 +17,7 @@
    .savedmovies__list {
       grid-template-columns: repeat(auto-fit, minmax(339px, 1fr));
       gap: 30px;
+      place-items: center;
    }
 }
 
@@ -27,7 +28,7 @@
    }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 760px) {
    .savedmovies {
       align-items: center;
    }

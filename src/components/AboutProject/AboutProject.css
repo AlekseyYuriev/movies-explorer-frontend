@@ -27,7 +27,7 @@
    border-top: 1px solid #000;
 }
 
-.about-project__content_title {
+.about-project__content-title {
    margin: 70px 0 26px 0;
    color: #000;
    font-size: 20px;
@@ -37,7 +37,7 @@
    letter-spacing: -0.8px;
 }
 
-.about-project__content_text {
+.about-project__text {
    margin: 0 0 110px 0;
    color: #000;
    font-size: 14px;
@@ -56,7 +56,7 @@
    row-gap: 14px;
 }
 
-.about-project__duration_title {
+.about-project__duration-title {
    margin: 0;
    display: flex;
    align-items: center;
@@ -70,17 +70,16 @@
    line-height: normal;
 }
 
-.about-project__duration_backend {
+.about-project__duration-title_backend {
    background-color: #2BE080;
 }
 
-.about-project__duration_text {
+.about-project__duration-text {
    margin: 0;
    display: flex;
    align-items: center;
    justify-content: center;
    color: #A0A0A0;
-   font-family: Inter;
    font-size: 14px;
    font-style: normal;
    font-weight: 500;
@@ -103,7 +102,7 @@
       column-gap: 30px;
    }
    
-   .about-project__content_title {
+   .about-project__content-title {
       margin: 70px 0 22px 0;
       font-size: 20px;
       font-style: normal;
@@ -112,7 +111,7 @@
       letter-spacing: -0.8px;
    }
    
-   .about-project__content_text {
+   .about-project__text {
       margin: 0 0 93px 0;
       font-size: 12px;
       line-height: 18px;
@@ -125,7 +124,7 @@
       row-gap: 14px;
    }
    
-   .about-project__duration_text {
+   .about-project__duration-text {
       font-weight: 400;
    }
 }
@@ -150,13 +149,13 @@
       grid-auto-flow: unset;
    }
    
-   .about-project__content_title {
+   .about-project__content-title {
       margin: 56px 0 16px 0;
       font-size: 18px;
       letter-spacing: -0.72px;
    }
    
-   .about-project__content_text {
+   .about-project__text {
       margin: 0;
       font-size: 11px;
       line-height: 16px;
@@ -169,11 +168,11 @@
       row-gap: 10px;
    }
 
-   .about-project__duration_title {
+   .about-project__duration-title {
       font-size: 11px;
    }
    
-   .about-project__duration_text {
+   .about-project__duration-text {
       font-size: 11px;
       line-height: normal;
    }
