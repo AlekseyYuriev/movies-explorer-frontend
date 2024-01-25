@@ -13,6 +13,13 @@
    gap: 20px;
 }
 
+@media screen and (max-width: 1215px) {
+   .savedmovies__list {
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      place-items: center;
+   }
+}
+
 @media screen and (max-width: 950px) {
    .savedmovies__list {
       grid-template-columns: repeat(auto-fit, minmax(339px, 1fr));

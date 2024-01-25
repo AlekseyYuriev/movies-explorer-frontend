@@ -18,6 +18,8 @@ export default function Profile ({ loggedIn }) {
                            id="email"
                            name="email" 
                            type="email"
+                           minLength='2'
+                           maxLength='30'
                            placeholder='Виталий'
                            />
                      </label>

@@ -55,7 +55,7 @@ export default function Header ({ loggedIn }) {
                      </ul>
                   </nav>
                   <Link to='/profile' className='header__profile link'>
-                        <img className='header__profile-image' src={location.pathname===`/` ? profile : profileMovies} alt='Профиль' />
+                     <img className='header__profile-image' src={location.pathname===`/` ? profile : profileMovies} alt='Профиль' />
                   </Link>
                   {location.pathname===`/` ? (
                      <button type='button' className={isOpen ? 'header__nav-button opened' : 'header__nav-button'} onClick={burgerMenu}>
