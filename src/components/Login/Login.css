@@ -1,0 +1,157 @@
+.login {
+   max-width: 396px;
+   width: 100%;
+   background-color: #FFF;
+   margin: 70px auto;
+}
+
+.login__logo {
+   margin: 0;
+   transition: all 0.3s;
+}
+.login__logo:hover {
+   opacity: 0.6;
+}
+
+.login__title {
+   color: #000;
+   font-size: 24px;
+   font-style: normal;
+   font-weight: 500;
+   line-height: normal;
+   margin: 40px auto;
+}
+
+.login__fieldset {
+   margin: 0;
+   padding: 0;
+   border: none;
+   display: flex;
+   flex-direction: column;
+}
+
+.login__label {
+   color: #A0A0A0;
+   font-size: 10px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: normal;
+}
+
+.login__input {
+   max-width: 396px;
+   width: 100%;
+   color: #000;
+   font-size: 14px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: normal;
+   padding: 0;
+   border: none;
+   border-bottom: 1px solid #E8E8E8;
+   padding: 5px 0 10px
+}
+
+.login__input:focus {
+   outline: none;
+   border-bottom: 1px solid #3456F3;
+}
+
+.login__input-error {
+   display: block;
+   min-height: 18px;
+   color: #FF3055;
+   font-size: 10px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: normal;
+   margin-top: 6px;
+}
+
+.login__button {
+   max-width: 396px;
+   width: 100%;
+   height: 45px;
+   border-radius: 3px;
+   background: #3456F3;
+   color: #FFF;
+   text-align: center;
+   font-size: 14px;
+   font-style: normal;
+   font-weight: 500;
+   line-height: normal;
+   border: none;
+   margin: 197px 0 16px;
+   padding: 0;
+   transition: all 0.3s;
+}
+
+.login__button:hover {
+   cursor: pointer;
+   opacity: 0.8;
+}
+
+.login__text {
+   margin: 0 auto;
+   color: #A0A0A0;
+   font-size: 14px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: normal;
+}
+
+.login__redirect {
+   text-decoration: none;
+   color: #3456F3;
+   font-size: 14px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: normal;
+   margin-left: 6px;
+   transition: all 0.3s;
+}
+
+.login__redirect:hover {
+   cursor: pointer;
+   opacity: 0.7;
+}
+
+@media screen and (max-width: 920px) {
+   .login {
+      margin: 232px auto;
+   }
+}
+
+@media screen and (max-width: 400px) {
+   .login {
+      margin: 56px auto 30px;
+      text-align: center;
+   }
+   
+   .login__title {
+      margin: 47px auto 80px;
+   }
+
+   .login__fieldset {
+      max-width: 260px;
+      text-align: start;
+      margin: 0 auto;
+   }
+
+   .login__input {
+      max-width: 260px;
+   }
+
+   .login__button {
+      margin: 285px 0 14px;
+      font-size: 12px;
+   }
+
+   .login__text {
+      font-size: 12px;
+   }
+   
+   .login__redirect {
+      font-size: 12px;
+   }
+}
