@@ -1,46 +1,52 @@
 import { useEffect, useState } from "react";
 
 export const useValidation = (value, validations) => {
-   const [isEmpty, setEmpty] = useState(true);
-   const [minLengthError, setMinLengthError] = useState(false);
-   const [maxLengthError, setMaxLengthError] = useState(false);
-   const [emailError, setEmailError] = useState(false);
-   const [inputValid, setInputValid] = useState(false);
+
+   const [errors, setErrors] = useState([]);
 
    useEffect(() => {
+
+      const errors = [];
+
       for (const validation in validations){
          switch (validation) {
             case 'isEmpty':
-               value ? setEmpty(false) : setEmpty(true)
+               if (!value) {
+                  errors.push('Поле не может быть пустым. ')
+               }
                break;
             case 'minLength':
-               value.length < validations[validation] ? setMinLengthError(true) : setMinLengthError(false)
+               if (value.length < validations[validation]) {
+                  errors.push(`Минимальное количество символов ${validations[validation]}. `)
+               }
                break;
             case 'maxLength':
-               value.length > validations[validation] ? setMaxLengthError(true) : setMaxLengthError(false)
+               if (value.length > validations[validation]) {
+                  errors.push(`Максимальное количество символов ${validations[validation]}. `)
+               }
                break
             case 'isEmail':
                const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-               re.test(String(value).toLowerCase()) ? setEmailError(false) : setEmailError(true)
+               if (!re.test(String(value).toLowerCase())) {
+                  errors.push('Некорректный E-mail. ')
+               }
                break
+            case 'name':
+               const letters = /^[А-яЁёA-Za-z -]+$/;
+               if(!letters.test(String(value).toLowerCase())) {
+                  errors.push('Поле должно содержит только латиницу, кириллицу, пробел или дефис.')
+               }
+               break
+            default: break
          }
       }
+
+      setErrors(errors);
+
    }, [value])
 
-   useEffect(() => {
-      if(isEmpty || maxLengthError || minLengthError || emailError) {
-         setInputValid(false);
-      } else {
-         setInputValid(true);
-      }
-   }, [isEmpty, maxLengthError, minLengthError, emailError])
-
    return {
-      isEmpty,
-      minLengthError,
-      emailError,
-      maxLengthError,
-      inputValid
+      errors
    }
 }
 

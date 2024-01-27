@@ -1,5 +1,5 @@
 export const API_URL = 'https://api.alexmovies.nomoredomainsmonster.ru';
-export const MOVIES_URL = 'https://api.nomoreparties.co/beatfilm-movies';
+export const MOVIES_URL = 'https://api.nomoreparties.co';
 
 export const REGISTER_ERROR_MESSAGE = 'При регистрации возникла ошибка.';
 export const LOGIN_ERROR_MESSAGE = 'При авторизации возникла ошибка.';

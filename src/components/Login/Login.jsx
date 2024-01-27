@@ -41,9 +41,7 @@ export default function Login ({ onSubmit }) {
                         required
                         placeholder='pochta@yandex.ru|' />
                      <span className='login__input-error'>
-                     {(email.isDirty && email.isEmpty) && 'Поле не может быть пустым. '}
-                     {(email.isDirty && email.minLengthError) && 'Минимальная длина символов 3. '}
-                     {(email.isDirty && email.emailError) && 'Некорректный E-mail. '}
+                        {(email.isDirty && email.errors.lenght !== 0) && email.errors.map(error => (error))}
                      </span>
                   </label>
                   <label className='login__label'>
@@ -61,12 +59,10 @@ export default function Login ({ onSubmit }) {
                         maxLength='30'
                         placeholder='Пароль' />
                      <span className='login__input-error'>
-                     {(password.isDirty && password.isEmpty) && 'Поле не может быть пустым. '}
-                     {(password.isDirty && password.minLengthError) && 'Минимальная длина символов 5. '}
-                     {(password.isDirty && password.maxLengthError) && 'Максимальная длина 30 символов. '}
+                     {(password.isDirty && password.errors.lenght !== 0) && password.errors.map(error => (error))}
                      </span>
                   </label>
-                  <button disabled={!email.inputValid || !password.inputValid} type='submit' className='login__button'>Войти</button>
+                  <button disabled={email.errors.length !==0 || password.errors.length !==0} type='submit' className='login__button'>Войти</button>
                   <p className='login__text'>
                      Ещё не зарегистрированы?
                      <Link to='/signup' className='login__redirect' title='На страницу регистрации'>Регистрация</Link>

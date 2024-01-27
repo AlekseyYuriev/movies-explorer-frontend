@@ -9,40 +9,40 @@ export async function getResponseData(res) {
 }
 
 export async function register(name, email, password) {
-   const request = await fetch(`${API_URL}/signup`, {
+   const response = await fetch(`${API_URL}/signup`, {
       method: 'POST',
       headers: {
          'Content-Type': 'application/json',
       },
       body: JSON.stringify({ name, email, password }),
    });
-   return getResponseData(request);
+   return getResponseData(response);
 }
 
 export async function login(email, password) {
-   const request = await fetch(`${API_URL}/signin`, {
+   const response = await fetch(`${API_URL}/signin`, {
       method: 'POST',
       headers: {
          'Content-Type': 'application/json',
       },
       body: JSON.stringify({ email, password }),
    });
-   return getResponseData(request);
+   return getResponseData(response);
 }
 
 export async function checkToken(token) {
-   const request = await fetch(`${API_URL}/users/me`, {
+   const response = await fetch(`${API_URL}/users/me`, {
       method: 'GET',
       headers: {
          "Content-Type": "application/json",
          "Authorization": `Bearer ${token}`,
       },
    });
-   return getResponseData(request);
+   return getResponseData(response);
 }
 
 export async function updateUser({ name, email }) {
-   const request = await fetch(`${API_URL}/users/me`, {
+   const response = await fetch(`${API_URL}/users/me`, {
       method: 'PATCH',
       headers: {
          "Content-Type": "application/json",
@@ -50,5 +50,5 @@ export async function updateUser({ name, email }) {
       },
       body: JSON.stringify({ name, email }),
    });
-   return getResponseData(request);
+   return getResponseData(response);
 }

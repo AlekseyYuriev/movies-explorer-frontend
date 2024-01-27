@@ -2,9 +2,12 @@ import React from "react";
 import './MoviesCard.css';
 import { useLocation } from "react-router-dom";
 
-export default function MoviesCard ({ movie, text, saved, alt }) {
+export default function MoviesCard ({ movie, text, saved, alt, duration }) {
 
    let location = useLocation();
+
+   const durationHours = Math.floor(duration/60);
+   const durationMinutes = duration%60 > 0 ? `${duration%60}м` : '';
 
    return (
       <div className="card">
@@ -25,7 +28,9 @@ export default function MoviesCard ({ movie, text, saved, alt }) {
                />
             )}
          </div>
-         <p className="card__duration">1ч42м</p>
+         <p className="card__duration">
+            {durationHours > 0 ? `${durationHours}ч ${durationMinutes}` : durationMinutes}
+         </p>
       </div>
    )
 }
