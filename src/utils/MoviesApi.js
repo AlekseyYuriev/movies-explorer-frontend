@@ -1,33 +1,28 @@
 import { getResponseData } from './MainApi';
-import { MOVIES_URL } from './constants';
+import { API_URL, MOVIES_URL } from './constants';
+
+const headerDefault = {
+   'Content-Type': 'application/json',
+} 
 
 export async function getMovies() {
    const moviesResponse = await fetch(`${MOVIES_URL}/beatfilm-movies`, {
       method: 'GET',
-      headers: {
-         'Content-Type': 'application/json',
-      },
+      headers: headerDefault
    })
    return getResponseData(moviesResponse);
 }
 
-
-// getInitialCards() {
-//    return fetch(`${this._url}/cards`, {
-//       headers: {
-//          authorization: 'Bearer ' + localStorage.getItem('token'),
-//          'Content-Type': 'application/json',
-//       }
-//    }).then((response) => this._getResponseData(response));
-// }
-
-// export async function register(name, email, password) {
-//    const request = await fetch(`${API_URL}/signup`, {
-//       method: 'POST',
-//       headers: {
-//          'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({ name, email, password }),
-//    });
-//    return getResponseData(request);
-// }
+export async function saveMovie(movie) {
+   const savedMovieResponse = await fetch(`${API_URL}/movies`, {
+      method: 'POST',
+      headers: {
+         ...headerDefault,
+         authorization: 'Bearer ' + localStorage.getItem('token')
+      },
+      body: JSON.stringify(movie)
+   })
+   if (savedMovieResponse.status !== 201) {
+      return Promise.reject(new Error(`Ошибка: ${savedMovieResponse.status}`));
+   }
+}

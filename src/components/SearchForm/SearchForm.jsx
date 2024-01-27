@@ -4,11 +4,12 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
 export default function SearchForm ({ onTextSearch, onDurationSearch }) {
 
-   const [inputValue, setInputValue] = useState('');
+   const [inputValue, setInputValue] = useState(localStorage.getItem('textSearch') || '');
 
    const handleInput = (e) => {
       setInputValue(e.target.value);
       onTextSearch(e.target.value);
+      localStorage.setItem('textSearch', e.target.value);
    }
 
    const handleSubmit = (e) => {
