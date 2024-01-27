@@ -1,19 +1,45 @@
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
 import Header from '../Header/Header';
 import './Profile.css';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+
+const useInput = (initialValue) => {
+   const [value, setValue] = useState(initialValue);
+   const [isDirty, setDirty] = useState(false);
+
+   const onChange = (e) => {
+      setValue(e.target.value)
+   }
+
+   const onBlur = (e) => {
+      setDirty(true)
+   }
+
+   return {
+      value,
+      onChange,
+      onBlur
+   }
+}
 
 export default function Profile ({ loggedIn, signOut }) {
+
+   const { name, email } = useContext(CurrentUserContext);
+   // const email = useInput('');
+   // const password = useInput('');
+
    return (
       <>
          <Header loggedIn={loggedIn} />
          <main>
             <section className='profile'>
-               <h1 className='profile__title'>Привет, Виталий!</h1>
+               <h1 className='profile__title'>{`Привет, ${name}!`}</h1>
                <form className='profile__form' noValidate>
                   <fieldset className='profile__fieldset'>
                      <label className='profile__label'>
                         Имя
                         <input 
+                           value={name}
                            className='profile__input' 
                            id="email"
                            name="email" 
@@ -27,6 +53,7 @@ export default function Profile ({ loggedIn, signOut }) {
                      <label className='profile__label'>
                         E-mail
                         <input 
+                           value={email}
                            className='profile__input' 
                            id="password"
                            name="password" 
