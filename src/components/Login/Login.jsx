@@ -1,8 +1,32 @@
 import { Link } from 'react-router-dom';
 import './Login.css';
 import headerLogo from '../../images/logo.svg';
+import { useState } from 'react';
 
-export default function Login () {
+export default function Login ({ onSubmit }) {
+
+   const [formValue, setFormValue] = useState({
+      email: '',
+      password: ''
+   });
+
+   const handleChange = (e) => {
+      const {name, value} = e.target;
+
+      setFormValue({
+         ...formValue,
+         [name]: value
+      });
+   }
+
+   const handleLogin = (e) => {
+      e.preventDefault();
+      if (!formValue.email || !formValue.password) {
+         return;
+      }
+      onSubmit(formValue.email, formValue.password)
+   }
+
    return (
       <main>
          <section className='login'>
@@ -10,11 +34,13 @@ export default function Login () {
                <img src={headerLogo} alt='Логотип проекта' />
             </Link>
             <h1 className='login__title'>Рады видеть!</h1>
-            <form className='login__form' noValidate>
+            <form onSubmit={handleLogin} className='login__form' noValidate>
                <fieldset className='login__fieldset'>
                   <label className='login__label'>
                      E-mail
                      <input 
+                        value={formValue.email}
+                        onChange={handleChange}
                         className='login__input' 
                         id="email"
                         name="email" 
@@ -26,6 +52,8 @@ export default function Login () {
                   <label className='login__label'>
                      Пароль
                      <input 
+                        value={formValue.password}
+                        onChange={handleChange}
                         className='login__input' 
                         id="password"
                         name="password" 

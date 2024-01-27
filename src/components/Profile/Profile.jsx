@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Header from '../Header/Header';
 import './Profile.css';
 
-export default function Profile ({ loggedIn }) {
+export default function Profile ({ loggedIn, signOut }) {
    return (
       <>
          <Header loggedIn={loggedIn} />
@@ -36,7 +36,7 @@ export default function Profile ({ loggedIn }) {
                      </label>
                      <div className='profile__input-error profile__input-error_email'></div>
                      <button type='submit' className='profile__button'>Редактировать</button>
-                     <Link to='/' title='На главную' className='profile__button profile__button-signout'>Выйти из аккаунта</Link>
+                     <button onClick={signOut} to='/' title='На главную' className='profile__button profile__button-signout'>Выйти из аккаунта</button>
                   </fieldset>
                </form>
             </section>

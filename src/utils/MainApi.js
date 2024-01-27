@@ -19,7 +19,7 @@ export async function register(name, email, password) {
    return getResponseData(request);
 }
 
-export async function login({ email, password }) {
+export async function login(email, password) {
    const request = await fetch(`${API_URL}/signin`, {
       method: 'POST',
       headers: {
