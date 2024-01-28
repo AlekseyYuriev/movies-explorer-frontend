@@ -11,6 +11,13 @@ export default function MoviesCard ({
    const durationHours = Math.floor(duration/60);
    const durationMinutes = duration%60 > 0 ? `${duration%60}м` : '';
 
+   const handleDeleteClick = useCallback( async () => {
+      await deleteMovie(id);
+      if(onMovieDeleted) {
+         onMovieDeleted(id);
+      }
+   }, [id, onMovieDeleted])
+
    const handleSaveClick = useCallback( async () => {
 
       if(saved) {
@@ -34,14 +41,7 @@ export default function MoviesCard ({
       if(onMovieSaved) {
          onMovieSaved(newMovie)
       }
-   }, [country, description, director, duration, image, movieId, nameEN, onMovieSaved, text, thumbnail, trailerLink, year])
-
-   const handleDeleteClick = useCallback( async () => {
-      await deleteMovie(id);
-      if(onMovieDeleted) {
-         onMovieDeleted(id);
-      }
-   }, [id, onMovieDeleted])
+   }, [country, description, director, duration, handleDeleteClick, image, movieId, nameEN, onMovieSaved, saved, text, thumbnail, trailerLink, year])
 
    return (
       <div className="card">
