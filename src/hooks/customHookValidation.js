@@ -16,12 +16,12 @@ export const useValidation = (value, validations) => {
                }
                break;
             case 'minLength':
-               if (value.length < validations[validation]) {
+               if (value && value.length < validations[validation]) {
                   errors.push(`Минимальное количество символов ${validations[validation]}. `)
                }
                break;
             case 'maxLength':
-               if (value.length > validations[validation]) {
+               if (value && value.length > validations[validation]) {
                   errors.push(`Максимальное количество символов ${validations[validation]}. `)
                }
                break

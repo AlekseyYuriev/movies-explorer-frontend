@@ -74,8 +74,7 @@ function App() {
   }
 
   const signOut = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('textSearch');
+    localStorage.clear();
     setLoggedIn(false);
     navigate('/signin', {replace: true});
   }

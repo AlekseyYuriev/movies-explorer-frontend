@@ -5,15 +5,53 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Footer from "../Footer/Footer";
 import { getSavedMovies } from "../../utils/MoviesApi";
+import { DURATION_SHORT_MOVIES } from "../../utils/constants";
 
 export default function SavedMovies ({ loggedIn }) {
 
+   const [movies, setMovies] = useState([]);
    const [savedMovies, setSavedMovies] = useState([]);
+   const [text, setText] = useState('');
+   const [filterActive, setFilterActive] = useState(false);
+
+   const filterMovies = useCallback((text, filterActive) => {
+
+      let filteredMovies = savedMovies;
+
+      if (filterActive) {
+         filteredMovies = filteredMovies.filter((movie) => {
+            if(movie.duration <= DURATION_SHORT_MOVIES) {
+               return true;
+            }
+            return false;
+         })
+      }
+
+      filteredMovies = filteredMovies.filter((movie) => {
+         if (movie.nameRU.toLowerCase().includes(text.toLowerCase()) || movie.nameEN.toLowerCase().includes(text.toLowerCase())) {
+            return true;
+         }
+         return false;
+      })
+      setMovies(filteredMovies);
+   
+   }, [savedMovies]);
+
+   const onTextSearch = useCallback((newText) => {
+      setText(newText);
+      filterMovies(newText,filterActive);
+   }, [filterMovies, filterActive]);
+
+   const onDurationSearch = useCallback((newFilterActive) => {
+      setFilterActive(newFilterActive);
+      filterMovies(text, newFilterActive);
+   }, [filterMovies, text]);
 
    useEffect(() => {
       async function getAllSavedMovies() {
          const savedFilms = await getSavedMovies();
          setSavedMovies(savedFilms);
+         setMovies(savedFilms);
       }
       getAllSavedMovies();
    }, [])
@@ -28,10 +66,13 @@ export default function SavedMovies ({ loggedIn }) {
       <>
          <Header loggedIn={loggedIn} />
          <main>
-            <SearchForm />
+            <SearchForm
+               onTextSearch={onTextSearch}
+               onDurationSearch={onDurationSearch}
+            />
             <section className="savedmovies">
                <div className="savedmovies__list">
-                  {savedMovies.map(savedMovie => 
+                  {movies.map(savedMovie => 
                   <MoviesCard 
                      image={savedMovie.image}
                      text={savedMovie.nameRU} 
