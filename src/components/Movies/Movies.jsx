@@ -55,10 +55,10 @@ export default function Movies ({ loggedIn }) {
    }, [])
 
    useEffect(() => {
-      if(localStorage.getItem('textSearch')) {
-         filterMovies(localStorage.getItem('textSearch'), filterActive)
+      if(localStorage.getItem('textSearch') || localStorage.getItem('filterCheckbox')) {
+         filterMovies(localStorage.getItem('textSearch'), localStorage.getItem('filterCheckbox'))
       }
-   }, [filterActive, filterMovies])
+   }, [filterMovies])
 
    return (
       <>

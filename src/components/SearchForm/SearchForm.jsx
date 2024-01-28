@@ -7,12 +7,29 @@ export default function SearchForm ({ onTextSearch, onDurationSearch }) {
 
    const location = useLocation();
 
-   const [inputValue, setInputValue] = useState(localStorage.getItem(location.pathname==='/movies' ? 'textSearch' : 'textSearchSaved') || '');
+   let defaultInputValue = '';
+   let defaultChecked = false;
+
+   if (location.pathname==='/movies') {
+      defaultInputValue = localStorage.getItem('textSearch')
+      defaultChecked = localStorage.getItem('filterCheckbox')
+   }
+
+   const [inputValue, setInputValue] = useState(defaultInputValue);
 
    const handleInput = (e) => {
       setInputValue(e.target.value);
       onTextSearch(e.target.value);
-      localStorage.setItem(location.pathname==='/movies' ? 'textSearch' : 'textSearchSaved', e.target.value);
+      if(location.pathname==='/movies') {
+         localStorage.setItem('textSearch', e.target.value);
+      }      
+   }
+
+   const handleFilterCheckboxChange = (filterActive) => {
+      onDurationSearch(filterActive);
+      if(location.pathname==='/movies') {
+         localStorage.setItem('filterCheckbox', filterActive);
+      }
    }
 
    const handleSubmit = (e) => {
@@ -43,7 +60,8 @@ export default function SearchForm ({ onTextSearch, onDurationSearch }) {
                </button>
             </div>
             <FilterCheckbox
-               onChange={onDurationSearch} />
+               onChange={handleFilterCheckboxChange}
+               initialChecked={defaultChecked} />
          </form>
    </section>
    )
