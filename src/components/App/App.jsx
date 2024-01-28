@@ -19,9 +19,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isCheckingToken, setIsCheckingToken] = useState(true);
 
-  //состояние для прелоадреа
-  const [isLoading, setIsLoading] = useState(false);
-
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
 
@@ -45,7 +42,6 @@ function App() {
   }, [isCheckingToken, loggedIn, token, tokenCheck]);
 
   const handleLogin = async (email, password) => {
-    setIsLoading(true);
     try {
       const user = await login(email, password);
       localStorage.setItem('token', user.token);
@@ -54,13 +50,10 @@ function App() {
       navigate('/movies');
     } catch (error) {
       console.log(error);
-    } finally {
-      setIsLoading(false);
     }
   }
 
   const createUser = async (name, email, password) => {
-    setIsLoading(true);
     try {
       const user = await register(name, email, password);
       await handleLogin(user.email, password);
@@ -68,8 +61,6 @@ function App() {
       navigate('/movies');
     } catch (error) {
       console.log(error);
-    } finally {
-      setIsLoading(false);
     }
   }
 
@@ -80,15 +71,12 @@ function App() {
   }
 
   const changeUserData = async (name, email) => {
-    setIsLoading(true);
     try {
       const newUserData = await updateUser(name, email);
       setCurrentUser(newUserData);
       console.log(newUserData)
     } catch (error) {
       console.log(error);
-    } finally {
-      setIsLoading(false);
     }
   }
 

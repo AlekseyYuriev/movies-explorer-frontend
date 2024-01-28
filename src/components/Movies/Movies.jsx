@@ -3,8 +3,9 @@ import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
-import { getMovies } from "../../utils/MoviesApi";
+import { getMovies, getSavedMovies } from "../../utils/MoviesApi";
 import { DURATION_SHORT_MOVIES } from "../../utils/constants";
+import Preloader from "../Preloader/Preloader";
 
 export default function Movies ({ loggedIn }) {
 
@@ -12,6 +13,8 @@ export default function Movies ({ loggedIn }) {
    const [allMovies, setAllMovies] = useState([]);
    const [text, setText] = useState('');
    const [filterActive, setFilterActive] = useState(false);
+   const [isLoading, setIsLoading] = useState(false);
+   const [likedMovies, setLikedMovies] = useState([]);
 
    const filterMovies = useCallback((text, filterActive) => {
 
@@ -46,19 +49,32 @@ export default function Movies ({ loggedIn }) {
       filterMovies(text, newFilterActive);
    }, [filterMovies, text]);
 
+   const getAllMovies = useCallback(async () => {
+      setIsLoading(true);
+      const films = await getMovies();
+      const savedFims = await getSavedMovies();
+      setLikedMovies(savedFims);
+      setAllMovies(films);
+      setIsLoading(false);
+      }, []) 
+
    useEffect(() => {
-      async function getAllMovies () {
-         const films = await getMovies();
-         setAllMovies(films);
-      }
+
       getAllMovies();
-   }, [])
+   }, [getAllMovies])
 
    useEffect(() => {
       if(localStorage.getItem('textSearch') || localStorage.getItem('filterCheckbox')) {
          filterMovies(localStorage.getItem('textSearch'), localStorage.getItem('filterCheckbox'))
       }
    }, [filterMovies])
+
+   const onMovieSaved = useCallback((newMovie) => {
+      const newLikedMovies = [...likedMovies];
+      newLikedMovies.push(newMovie);
+      setLikedMovies(newLikedMovies);
+   }, [likedMovies])
+
 
    return (
       <>
@@ -68,8 +84,7 @@ export default function Movies ({ loggedIn }) {
                onDurationSearch={onDurationSearch}
                onTextSearch={onTextSearch} 
             />
-            <MoviesCardList
-               movies={movies} />
+            {isLoading ? <Preloader /> : <MoviesCardList movies={movies} likedMovies={likedMovies} onMovieSaved={onMovieSaved} />}
          </main>
          <Footer />
       </>

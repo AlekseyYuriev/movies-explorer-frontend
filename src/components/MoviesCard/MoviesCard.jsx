@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { deleteMovie, saveMovie } from "../../utils/MoviesApi";
 
 export default function MoviesCard ({ 
-   image, text, saved, alt, duration, country, director, year, description, trailerLink, thumbnail, movieId, nameEN, id, onMovieDeleted }) {
+   image, text, saved, alt, duration, country, director, year, description, trailerLink, thumbnail, movieId, nameEN, id, onMovieDeleted, onMovieSaved }) {
 
    let location = useLocation();
 
@@ -12,7 +12,7 @@ export default function MoviesCard ({
    const durationMinutes = duration%60 > 0 ? `${duration%60}м` : '';
 
    const handleSaveClick = useCallback( async () => {
-      await saveMovie({
+      const newMovie = await saveMovie({
          country,
          director,
          duration,
@@ -25,7 +25,10 @@ export default function MoviesCard ({
          nameRU: text,
          nameEN
       })
-   }, [country, description, director, duration, image, movieId, nameEN, text, thumbnail, trailerLink, year])
+      if(onMovieSaved) {
+         onMovieSaved(newMovie)
+      }
+   }, [country, description, director, duration, image, movieId, nameEN, onMovieSaved, text, thumbnail, trailerLink, year])
 
    const handleDeleteClick = useCallback( async () => {
       await deleteMovie(id);

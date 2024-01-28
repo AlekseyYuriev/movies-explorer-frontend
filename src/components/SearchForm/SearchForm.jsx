@@ -34,8 +34,9 @@ export default function SearchForm ({ onTextSearch, onDurationSearch }) {
 
    const handleSubmit = (e) => {
       e.preventDefault();
-
-      onTextSearch(inputValue);
+      if(inputValue) {
+         onTextSearch(inputValue);
+      }
    }
 
    return (

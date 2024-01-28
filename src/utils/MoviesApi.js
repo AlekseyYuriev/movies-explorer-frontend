@@ -25,6 +25,7 @@ export async function saveMovie(movie) {
    if (savedMovieResponse.status !== 201) {
       return Promise.reject(new Error(`Ошибка: ${savedMovieResponse.status}`));
    }
+   return savedMovieResponse.json();
 }
 
 export async function getSavedMovies() {
