@@ -7,8 +7,8 @@ import { useInput } from '../../hooks/customHookValidation';
 export default function Profile ({ loggedIn, signOut, onSubmit }) {
 
    const currentUser = useContext(CurrentUserContext);
-   const name = useInput(currentUser.name, {isEmpty: true, minLength: 3, isName: true});
-   const email = useInput(currentUser.email, {isEmpty: true, minLength: 3, isEmail: true});
+   const name = useInput(currentUser.name, {isEmpty: true, minLength: 2, isName: true});
+   const email = useInput(currentUser.email, {isEmpty: true, isEmail: true});
 
    const handleProfile = (e) => {
       e.preventDefault();

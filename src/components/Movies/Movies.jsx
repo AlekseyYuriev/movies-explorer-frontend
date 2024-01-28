@@ -13,14 +13,6 @@ export default function Movies ({ loggedIn }) {
    const [text, setText] = useState('');
    const [filterActive, setFilterActive] = useState(false);
 
-   useEffect(() => {
-      async function getAllMovies () {
-         const films = await getMovies();
-         setAllMovies(films);
-      }
-      getAllMovies();
-   }, [])
-
    const filterMovies = useCallback((text, filterActive) => {
 
       let filteredMovies = allMovies;
@@ -49,10 +41,24 @@ export default function Movies ({ loggedIn }) {
       filterMovies(newText,filterActive);
    }, [filterMovies, filterActive]);
 
-   const onDurationSearch = useCallback((newfilterActive) => {
-      setFilterActive(newfilterActive);
-      filterMovies(text, newfilterActive);
+   const onDurationSearch = useCallback((newFilterActive) => {
+      setFilterActive(newFilterActive);
+      filterMovies(text, newFilterActive);
    }, [filterMovies, text]);
+
+   useEffect(() => {
+      async function getAllMovies () {
+         const films = await getMovies();
+         setAllMovies(films);
+      }
+      getAllMovies();
+   }, [])
+
+   useEffect(() => {
+      if(localStorage.getItem('textSearch')) {
+         filterMovies(localStorage.getItem('textSearch'), filterActive)
+      }
+   }, [filterActive, filterMovies])
 
    return (
       <>

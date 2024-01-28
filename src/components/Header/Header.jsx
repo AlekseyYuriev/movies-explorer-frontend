@@ -8,7 +8,7 @@ import Navigation from '../Navigation/Navigation';
 
 export default function Header ({ loggedIn }) {
 
-   let location = useLocation();
+   const location = useLocation();
    const [isOpen, setIsOpen] = useState(false);
 
    const burgerMenu = () => {

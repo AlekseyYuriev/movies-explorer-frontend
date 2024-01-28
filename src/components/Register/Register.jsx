@@ -6,9 +6,9 @@ import { useInput } from '../../hooks/customHookValidation';
 
 export default function Register ({ onSubmit }) {
 
-   const name = useInput('', {isEmpty: true, minLength: 3, isName: true});
-   const email = useInput('', {isEmpty: true, minLength: 3, isEmail: true});
-   const password = useInput('', {isEmpty: true, minLength: 5, maxLength: 30});
+   const name = useInput('', {isEmpty: true, isName: true, minLength: 2});
+   const email = useInput('', {isEmpty: true, isEmail: true});
+   const password = useInput('', {isEmpty: true, minLength: 5});
 
    const handleRegister = (e) => {
       e.preventDefault();

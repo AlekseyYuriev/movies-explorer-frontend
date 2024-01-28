@@ -6,8 +6,8 @@ import { useInput } from '../../hooks/customHookValidation';
 
 export default function Login ({ onSubmit }) {
 
-   const email = useInput('', {isEmpty: true, minLength: 3, isEmail: true});
-   const password = useInput('', {isEmpty: true, minLength: 5, maxLength: 30});
+   const email = useInput('', {isEmpty: true, isEmail: true});
+   const password = useInput('', {isEmpty: true, minLength: 5});
 
    const handleLogin = (e) => {
       e.preventDefault();
