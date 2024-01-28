@@ -60,6 +60,7 @@ export default function SavedMovies ({ loggedIn }) {
       const updatedMovies = [...savedMovies];
       const deletedMovie = updatedMovies.filter(movie => movie._id !== id);
       setSavedMovies(deletedMovie);
+      setMovies(deletedMovie);
    }, [savedMovies])
 
    return (

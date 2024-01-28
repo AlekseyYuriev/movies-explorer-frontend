@@ -75,6 +75,12 @@ export default function Movies ({ loggedIn }) {
       setLikedMovies(newLikedMovies);
    }, [likedMovies])
 
+   const onMovieDeleted = useCallback((id) => {
+      const updatedMovies = [...likedMovies];
+      const deletedMovie = updatedMovies.filter(movie => movie._id !== id);
+      setLikedMovies(deletedMovie);
+   }, [likedMovies])
+
 
    return (
       <>
@@ -84,7 +90,7 @@ export default function Movies ({ loggedIn }) {
                onDurationSearch={onDurationSearch}
                onTextSearch={onTextSearch} 
             />
-            {isLoading ? <Preloader /> : <MoviesCardList movies={movies} likedMovies={likedMovies} onMovieSaved={onMovieSaved} />}
+            {isLoading ? <Preloader /> : <MoviesCardList movies={movies} likedMovies={likedMovies} onMovieSaved={onMovieSaved} onMovieDeleted={onMovieDeleted} />}
          </main>
          <Footer />
       </>

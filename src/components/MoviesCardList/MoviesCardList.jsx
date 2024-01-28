@@ -3,13 +3,17 @@ import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import { MOVIES_URL } from '../../utils/constants';
 
-export default function MoviesCardList ({ movies, likedMovies, onMovieSaved }) {
+export default function MoviesCardList ({ movies, likedMovies, onMovieSaved, onMovieDeleted }) {
 
    if (movies.length===0) {
       return <span>Ничего не найдено</span>
    }
 
-   const likedMoviesSet = new Set(likedMovies.map(movie => movie.movieId));
+   const likedMoviesMap = new Map();
+
+   for (let i=0; i <= likedMovies.length - 1; i++ ) {
+      likedMoviesMap.set(likedMovies[i].movieId, likedMovies[i]._id);
+   }
 
    return (
       <section className='cards'>
@@ -19,7 +23,7 @@ export default function MoviesCardList ({ movies, likedMovies, onMovieSaved }) {
                   image={`${MOVIES_URL}/${movie.image.url}`} 
                   text={movie.nameRU} 
                   key={movie.id} 
-                  saved={likedMoviesSet.has(movie.id)} 
+                  saved={likedMoviesMap.has(movie.id)} 
                   alt={movie.nameRU}
                   duration={movie.duration}
                   country={movie.country}
@@ -31,6 +35,8 @@ export default function MoviesCardList ({ movies, likedMovies, onMovieSaved }) {
                   movieId={movie.id}
                   nameEN={movie.nameEN}
                   onMovieSaved={onMovieSaved}
+                  onMovieDeleted={onMovieDeleted}
+                  id={likedMoviesMap.get(movie.id)}
                   />
             )}
          </div>

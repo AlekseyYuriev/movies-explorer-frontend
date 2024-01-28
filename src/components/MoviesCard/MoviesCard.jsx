@@ -12,6 +12,12 @@ export default function MoviesCard ({
    const durationMinutes = duration%60 > 0 ? `${duration%60}м` : '';
 
    const handleSaveClick = useCallback( async () => {
+
+      if(saved) {
+         await handleDeleteClick();
+         return;
+      }
+
       const newMovie = await saveMovie({
          country,
          director,
