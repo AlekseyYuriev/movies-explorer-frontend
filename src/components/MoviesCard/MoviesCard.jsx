@@ -1,17 +1,17 @@
 import React, { useCallback } from "react";
 import './MoviesCard.css';
 import { useLocation } from "react-router-dom";
-import { saveMovie } from "../../utils/MoviesApi";
+import { deleteMovie, saveMovie } from "../../utils/MoviesApi";
 
 export default function MoviesCard ({ 
-   image, text, saved, alt, duration, country, director, year, description, trailerLink, thumbnail, movieId, nameEN }) {
+   image, text, saved, alt, duration, country, director, year, description, trailerLink, thumbnail, movieId, nameEN, id, onMovieDeleted }) {
 
    let location = useLocation();
 
    const durationHours = Math.floor(duration/60);
    const durationMinutes = duration%60 > 0 ? `${duration%60}м` : '';
 
-   const handleOnClick = useCallback( async () => {
+   const handleSaveClick = useCallback( async () => {
       await saveMovie({
          country,
          director,
@@ -27,6 +27,13 @@ export default function MoviesCard ({
       })
    }, [country, description, director, duration, image, movieId, nameEN, text, thumbnail, trailerLink, year])
 
+   const handleDeleteClick = useCallback( async () => {
+      await deleteMovie(id);
+      if(onMovieDeleted) {
+         onMovieDeleted(id);
+      }
+   }, [id, onMovieDeleted])
+
    return (
       <div className="card">
          <img src={image} className="card__image" alt={alt} />
@@ -34,15 +41,16 @@ export default function MoviesCard ({
             <h2 className="card__name">{text}</h2>
             {location.pathname===`/movies` ? (
                <button 
-               onClick={handleOnClick}
+               onClick={handleSaveClick}
                type="button" 
                aria-label="сохранить фильм в избранное" 
                className={saved ? 'card__like-button card__like-button_active' : 'card__like-button'}
                />
             ) : (
                <button 
+               onClick={handleDeleteClick}
                type="button" 
-               aria-label="сохранить фильм в избранное" 
+               aria-label="удалить фильм" 
                className="card__delete-button"
                />
             )}

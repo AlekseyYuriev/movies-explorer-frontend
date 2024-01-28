@@ -31,7 +31,7 @@ export const useValidation = (value, validations) => {
                   errors.push('Некорректный E-mail. ')
                }
                break
-            case 'name':
+            case 'isName':
                const letters = /^[А-яЁёA-Za-z -]+$/;
                if(!letters.test(String(value).toLowerCase())) {
                   errors.push('Поле должно содержит только латиницу, кириллицу, пробел или дефис.')

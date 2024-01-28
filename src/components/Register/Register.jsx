@@ -1,30 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './Register.css';
 import headerLogo from '../../images/logo.svg';
+import { useInput } from '../../hooks/customHookValidation';
 
 export default function Register ({ onSubmit }) {
 
-   const [formValue, setFormValue] = useState({
-      name: '',
-      email: '',
-      password: ''
-   });
-
-   const handleChange = (e) => {
-      const {name, value} = e.target;
-
-      setFormValue({
-         ...formValue,
-         [name]: value
-      });
-   }
+   const name = useInput('', {isEmpty: true, minLength: 3, isName: true});
+   const email = useInput('', {isEmpty: true, minLength: 3, isEmail: true});
+   const password = useInput('', {isEmpty: true, minLength: 5, maxLength: 30});
 
    const handleRegister = (e) => {
       e.preventDefault();
-
-      const { name, email, password } = formValue;
-      onSubmit(name, email, password);
+      if (!name.value || !email.value || !password.value) {
+         return;
+      }
+      onSubmit(name.value, email.value, password.value)
    }
 
    return (
@@ -39,8 +30,9 @@ export default function Register ({ onSubmit }) {
                   <label className='register__label'>
                      Имя
                      <input 
-                        value={formValue.name}
-                        onChange={handleChange}
+                        value={name.value}
+                        onChange={e => name.onChange(e)}
+                        onBlur={e => name.onBlur(e)}
                         className='register__input' 
                         id="name"
                         name="name" 
@@ -49,26 +41,32 @@ export default function Register ({ onSubmit }) {
                         minLength='2'
                         maxLength='30'
                         placeholder='Виталий' />
-                     <span className='register__input-error'></span>
+                     <span className='register__input-error'>
+                        {(name.isDirty && name.errors.lenght !== 0) && name.errors.map(error => (error))}
+                     </span>
                   </label>
                   <label className='register__label'>
                      E-mail
                      <input 
-                        value={formValue.email}
-                        onChange={handleChange}
+                        value={email.value}
+                        onChange={e => email.onChange(e)}
+                        onBlur={e => email.onBlur(e)}
                         className='register__input' 
                         id="email"
                         name="email" 
                         type="email"
                         required
                         placeholder='pochta@yandex.ru|' />
-                     <span className='register__input-error'></span>
+                     <span className='register__input-error'>
+                        {(email.isDirty && email.errors.lenght !== 0) && email.errors.map(error => (error))}
+                     </span>
                   </label>
                   <label className='register__label'>
                      Пароль
                      <input 
-                        value={formValue.password}
-                        onChange={handleChange}
+                        value={password.value}
+                        onChange={e => password.onChange(e)}
+                        onBlur={e => password.onBlur(e)}
                         className='register__input register__input_password' 
                         id="password"
                         name="password" 
@@ -77,7 +75,9 @@ export default function Register ({ onSubmit }) {
                         minLength='2'
                         maxLength='30'
                         placeholder='••••••••••••••' />
-                     <span className='register__input-error'>Что-то пошло не так...</span>
+                     <span className='register__input-error'>
+                        {(password.isDirty && password.errors.lenght !== 0) && password.errors.map(error => (error))}
+                     </span>
                   </label>
                   <button 
                      type='submit' 

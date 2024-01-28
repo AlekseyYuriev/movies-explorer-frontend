@@ -41,7 +41,7 @@ export async function checkToken(token) {
    return getResponseData(response);
 }
 
-export async function updateUser({ name, email }) {
+export async function updateUser(name, email) {
    const response = await fetch(`${API_URL}/users/me`, {
       method: 'PATCH',
       headers: {

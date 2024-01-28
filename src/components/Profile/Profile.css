@@ -54,13 +54,14 @@
 }
 
 .profile__input-error {
+   text-align: end;
+   height: 12px;
    min-height: 10px;
    color: #FF3055;
    font-size: 9px;
    font-style: normal;
    font-weight: 400;
    line-height: normal;
-   text-align: start;
 }
 
 .profile__input-error_name {
@@ -92,6 +93,10 @@
 .profile__button:hover {
    cursor: pointer;
    opacity: 0.8;
+}
+
+.profile__button:disabled {
+   color: #C2C2C2;
 }
 
 .profile__button-signout {

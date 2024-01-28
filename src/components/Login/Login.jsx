@@ -4,8 +4,6 @@ import './Login.css';
 import headerLogo from '../../images/logo.svg';
 import { useInput } from '../../hooks/customHookValidation';
 
-
-
 export default function Login ({ onSubmit }) {
 
    const email = useInput('', {isEmpty: true, minLength: 3, isEmail: true});
@@ -59,7 +57,7 @@ export default function Login ({ onSubmit }) {
                         maxLength='30'
                         placeholder='Пароль' />
                      <span className='login__input-error'>
-                     {(password.isDirty && password.errors.lenght !== 0) && password.errors.map(error => (error))}
+                        {(password.isDirty && password.errors.lenght !== 0) && password.errors.map(error => (error))}
                      </span>
                   </label>
                   <button disabled={email.errors.length !==0 || password.errors.length !==0} type='submit' className='login__button'>Войти</button>
