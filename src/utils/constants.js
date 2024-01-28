@@ -15,3 +15,27 @@ export const NAME_ERROR_VALIDATION = 'Разрешены: латиница, ки
 export const NAME_LENGTH_ERROR_VALIDATION = 'Минимум 2 символа.';
 export const NAME_SPACE_ERROR_VALIDATION = 'Введите ключевое слово.';
 export const EMAIL_FORMAT_ERROR_VALIDATION = 'Почта должна быть в формате pochta@yandex.ru.';
+
+export const DEVICE_PARAMS = {
+   desktop: {
+      width: 1279,
+      movies: {
+         total: 16,
+         more: 4,
+         },
+      },
+   tablet: {
+      width: 767,
+      movies: {
+         total: 8,
+         more: 2,
+         },
+      },
+   mobile: {
+      width: 479,
+      movies: {
+         total: 5,
+         more: 2,
+      },
+   },
+};
