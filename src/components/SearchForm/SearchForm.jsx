@@ -20,7 +20,9 @@ export default function SearchForm ({ onTextSearch, onDurationSearch, setInputEr
    const handleInput = (e) => {
       setInputValue(e.target.value);
       onTextSearch(e.target.value);
-      setInputError(false);
+      if (setInputError){
+         setInputError(false);
+      }
       if(location.pathname==='/movies') {
          localStorage.setItem('textSearch', e.target.value);
       }      
@@ -36,10 +38,14 @@ export default function SearchForm ({ onTextSearch, onDurationSearch, setInputEr
    const handleSubmit = (e) => {
       e.preventDefault();
       if(inputValue) {
-         setInputError(false);
+         if (setInputError) {
+            setInputError(false);
+         }
          onTextSearch(inputValue);
-      } else if (!inputValue) {
-         setInputError(true);
+      } else {
+         if (setInputError) {
+            setInputError(true);
+         }
       }
    }
 

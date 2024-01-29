@@ -73,6 +73,20 @@
    border-bottom: none;
 }
 
+.profile__show-message {
+   margin-top: 191px;
+}
+
+.profile__server-message {
+   height: 24px;
+   color: green;
+}
+
+.profile__error-message {
+   height: 24px;
+   color: red;
+}
+
 .profile__button {
    max-width: 410px;
    width: 100%;
@@ -84,7 +98,6 @@
    font-weight: 400;
    line-height: normal;
    border: none;
-   margin-top: 215px;
    padding: 0;
    background-color: transparent;
    transition: all 0.3s;

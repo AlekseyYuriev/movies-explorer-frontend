@@ -4,8 +4,9 @@ export async function getResponseData(res) {
    if (res.ok) {
       return res.json();
    }
-
-   return Promise.reject(new Error(`Ошибка: ${res.status}`));
+   const error = new Error(`Ошибка: ${res.status}`)
+   error.statusCode = res.status;
+   return Promise.reject(error);
 }
 
 export async function register(name, email, password) {

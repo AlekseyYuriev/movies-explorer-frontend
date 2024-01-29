@@ -52,10 +52,15 @@ export default function Movies ({ loggedIn }) {
 
    const getAllMovies = useCallback(async () => {
       setIsLoading(true);
-      const films = await getMovies();
       const savedFims = await getSavedMovies();
+      if (localStorage.getItem('films')) {
+         setAllMovies(JSON.parse(localStorage.getItem('films')));
+      } else {
+         const films = await getMovies();
+         setAllMovies(films);
+         localStorage.setItem('films', JSON.stringify(films));
+      }
       setLikedMovies(savedFims);
-      setAllMovies(films);
       setIsLoading(false);
       }, []) 
 
@@ -66,7 +71,7 @@ export default function Movies ({ loggedIn }) {
 
    useEffect(() => {
       if(localStorage.getItem('textSearch') || localStorage.getItem('filterCheckbox')) {
-         filterMovies(localStorage.getItem('textSearch'), localStorage.getItem('filterCheckbox'))
+         filterMovies(localStorage.getItem('textSearch'), localStorage.getItem('filterCheckbox')==='true')
       }
    }, [filterMovies])
 

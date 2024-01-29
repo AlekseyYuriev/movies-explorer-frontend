@@ -37,7 +37,7 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token')
     if ((token && !loggedIn) || isCheckingToken) {
-      tokenCheck();
+      tokenCheck(token);
     }
   }, [isCheckingToken, loggedIn, tokenCheck]);
 
@@ -72,13 +72,8 @@ function App() {
   }
 
   const changeUserData = async (name, email) => {
-    try {
       const newUserData = await updateUser(name, email);
       setCurrentUser(newUserData);
-      console.log(newUserData)
-    } catch (error) {
-      console.log(error);
-    }
   }
 
   if(isCheckingToken) {
