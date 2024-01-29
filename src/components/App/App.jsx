@@ -42,26 +42,18 @@ function App() {
   }, [isCheckingToken, loggedIn, tokenCheck]);
 
   const handleLogin = async (email, password) => {
-    try {
       const user = await login(email, password);
       localStorage.setItem('token', user.token);
       await tokenCheck(user.token);
       setLoggedIn(true);
       navigate('/movies');
-    } catch (error) {
-      console.log(error);
-    }
   }
 
   const createUser = async (name, email, password) => {
-    try {
       const user = await register(name, email, password);
       await handleLogin(user.email, password);
       setLoggedIn(true);
       navigate('/movies');
-    } catch (error) {
-      console.log(error);
-    }
   }
 
   const signOut = () => {

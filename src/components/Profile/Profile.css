@@ -127,10 +127,6 @@
    .profile__title {
       margin: 0 auto 96px;
    }
-   
-   .profile__button {
-      margin-top: 200px;
-   }
 
    .profile__button-signout {
       color: #FF3055;

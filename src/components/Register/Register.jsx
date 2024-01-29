@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Register.css';
 import headerLogo from '../../images/logo.svg';
@@ -9,13 +9,23 @@ export default function Register ({ onSubmit }) {
    const name = useInput('', {isEmpty: true, isName: true, minLength: 2});
    const email = useInput('', {isEmpty: true, isEmail: true});
    const password = useInput('', {isEmpty: true, minLength: 5});
+   const [errorMessage, setErrorMessage] = useState('');
 
-   const handleRegister = (e) => {
+
+   const handleRegister = async (e) => {
       e.preventDefault();
       if (!name.value || !email.value || !password.value) {
          return;
       }
-      onSubmit(name.value, email.value, password.value)
+      try {
+         await onSubmit(name.value, email.value, password.value)
+      } catch (error) {
+         if (error.statusCode === 409) {
+            setErrorMessage('Пользователь с таким email уже существует.')
+         } else {
+            setErrorMessage('При регистрации пользователя произошла ошибка.')
+         }
+      }
    }
 
    return (
@@ -31,7 +41,7 @@ export default function Register ({ onSubmit }) {
                      Имя
                      <input 
                         value={name.value}
-                        onChange={e => name.onChange(e)}
+                        onChange={e => {name.onChange(e); setErrorMessage('')}}
                         onBlur={e => name.onBlur(e)}
                         className='register__input' 
                         id="name"
@@ -49,7 +59,7 @@ export default function Register ({ onSubmit }) {
                      E-mail
                      <input 
                         value={email.value}
-                        onChange={e => email.onChange(e)}
+                        onChange={e => {email.onChange(e); setErrorMessage('')}}
                         onBlur={e => email.onBlur(e)}
                         className='register__input' 
                         id="email"
@@ -79,11 +89,17 @@ export default function Register ({ onSubmit }) {
                         {(password.isDirty && password.errors.lenght !== 0) && password.errors.map(error => (error))}
                      </span>
                   </label>
+                  <div className='profile__show-message'>
+                     {errorMessage &&                         
+                     (<div className='profile__error-message'>
+                           {errorMessage}
+                     </div>)}
                   <button 
                      type='submit' 
                      className='register__button'
                   >
                      Зарегистрироваться</button>
+                     </div>
                   <p className='register__text'>
                      Уже зарегистрированы?
                      <Link to='/signin' className='register__redirect' title='На страницу авторизации'>Войти</Link>
