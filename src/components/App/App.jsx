@@ -20,9 +20,8 @@ function App() {
   const [isCheckingToken, setIsCheckingToken] = useState(true);
 
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
 
-  const tokenCheck = useCallback(async () => {
+  const tokenCheck = useCallback(async (token) => {
     try {
       const userData = await checkToken(token);
       setLoggedIn(true);
@@ -32,20 +31,21 @@ function App() {
     } finally {
       setIsCheckingToken(false);
     }
-  }, [token]);
+  }, []);
 
 
   useEffect(() => {
+    const token = localStorage.getItem('token')
     if ((token && !loggedIn) || isCheckingToken) {
       tokenCheck();
     }
-  }, [isCheckingToken, loggedIn, token, tokenCheck]);
+  }, [isCheckingToken, loggedIn, tokenCheck]);
 
   const handleLogin = async (email, password) => {
     try {
       const user = await login(email, password);
       localStorage.setItem('token', user.token);
-      await tokenCheck();
+      await tokenCheck(user.token);
       setLoggedIn(true);
       navigate('/movies');
     } catch (error) {
@@ -67,7 +67,8 @@ function App() {
   const signOut = () => {
     localStorage.clear();
     setLoggedIn(false);
-    navigate('/signin', {replace: true});
+    setCurrentUser({});
+    navigate('/', {replace: true});
   }
 
   const changeUserData = async (name, email) => {

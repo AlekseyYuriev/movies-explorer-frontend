@@ -15,7 +15,6 @@ export default function Profile ({ loggedIn, signOut, onSubmit }) {
       if (!name.value || !email.value) {
          return;
       }
-      console.log(name.value, email.value);
       onSubmit(name.value, email.value)
    }
 

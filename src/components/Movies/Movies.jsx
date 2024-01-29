@@ -15,6 +15,7 @@ export default function Movies ({ loggedIn }) {
    const [filterActive, setFilterActive] = useState(false);
    const [isLoading, setIsLoading] = useState(false);
    const [likedMovies, setLikedMovies] = useState([]);
+   const [inputError, setInputError] = useState(false);
 
    const filterMovies = useCallback((text, filterActive) => {
 
@@ -88,9 +89,10 @@ export default function Movies ({ loggedIn }) {
          <main>
             <SearchForm
                onDurationSearch={onDurationSearch}
-               onTextSearch={onTextSearch} 
+               onTextSearch={onTextSearch}
+               setInputError={setInputError} 
             />
-            {isLoading ? <Preloader /> : <MoviesCardList movies={movies} likedMovies={likedMovies} onMovieSaved={onMovieSaved} onMovieDeleted={onMovieDeleted} />}
+            {isLoading ? <Preloader /> : <MoviesCardList movies={movies} likedMovies={likedMovies} onMovieSaved={onMovieSaved} onMovieDeleted={onMovieDeleted} inputError={inputError}/>}
          </main>
          <Footer />
       </>

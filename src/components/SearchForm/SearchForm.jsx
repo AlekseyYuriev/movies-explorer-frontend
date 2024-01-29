@@ -3,7 +3,7 @@ import './SearchForm.css';
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import { useLocation } from "react-router-dom";
 
-export default function SearchForm ({ onTextSearch, onDurationSearch }) {
+export default function SearchForm ({ onTextSearch, onDurationSearch, setInputError }) {
 
    const location = useLocation();
 
@@ -11,8 +11,8 @@ export default function SearchForm ({ onTextSearch, onDurationSearch }) {
    let defaultChecked = false;
 
    if (location.pathname==='/movies') {
-      defaultInputValue = localStorage.getItem('textSearch')
-      defaultChecked = localStorage.getItem('filterCheckbox')
+      defaultInputValue = localStorage.getItem('textSearch') || '';
+      defaultChecked = localStorage.getItem('filterCheckbox') || false;
    }
 
    const [inputValue, setInputValue] = useState(defaultInputValue);
@@ -20,6 +20,7 @@ export default function SearchForm ({ onTextSearch, onDurationSearch }) {
    const handleInput = (e) => {
       setInputValue(e.target.value);
       onTextSearch(e.target.value);
+      setInputError(false);
       if(location.pathname==='/movies') {
          localStorage.setItem('textSearch', e.target.value);
       }      
@@ -35,7 +36,10 @@ export default function SearchForm ({ onTextSearch, onDurationSearch }) {
    const handleSubmit = (e) => {
       e.preventDefault();
       if(inputValue) {
+         setInputError(false);
          onTextSearch(inputValue);
+      } else if (!inputValue) {
+         setInputError(true);
       }
    }
 

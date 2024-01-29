@@ -3,7 +3,7 @@ import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import { MOVIES_URL, DEVICE_PARAMS } from '../../utils/constants';
 
-export default function MoviesCardList ({ movies, likedMovies, onMovieSaved, onMovieDeleted }) {
+export default function MoviesCardList ({ movies, likedMovies, onMovieSaved, onMovieDeleted, inputError }) {
 
    const [windowSize, setWindowSize] = useState({
       width: window.innerWidth,
@@ -40,7 +40,7 @@ export default function MoviesCardList ({ movies, likedMovies, onMovieSaved, onM
    }, []);
 
    if (movies.length===0) {
-      return <span>Ничего не найдено</span>
+      return <span className='cards__empty'>{inputError ? 'Нужно ввести ключевое слово' : 'Ничего не найдено'}</span>
    }
 
    const openMoreCards = () => {

@@ -4,7 +4,23 @@ import { useLocation } from "react-router-dom";
 import { deleteMovie, saveMovie } from "../../utils/MoviesApi";
 
 export default function MoviesCard ({ 
-   image, text, saved, alt, duration, country, director, year, description, trailerLink, thumbnail, movieId, nameEN, id, onMovieDeleted, onMovieSaved }) {
+   image,
+   text,
+   saved,
+   alt,
+   duration,
+   country,
+   director,
+   year,
+   description,
+   trailerLink,
+   thumbnail,
+   movieId,
+   nameEN,
+   id,
+   onMovieDeleted,
+   onMovieSaved 
+}) {
 
    let location = useLocation();
 
@@ -45,7 +61,9 @@ export default function MoviesCard ({
 
    return (
       <div className="card">
+      <a href={trailerLink} target="_blank" rel="noreferrer">
          <img src={image} className="card__image" alt={alt} />
+      </a>
          <div className="card__info">
             <h2 className="card__name">{text}</h2>
             {location.pathname===`/movies` ? (
