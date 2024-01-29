@@ -12,7 +12,7 @@ export default function Login ({ onSubmit }) {
 
    const handleLogin = async (e) => {
       e.preventDefault();
-      if (!email.value || !password.value) {
+      if (email.errors.length !== 0 || password.errors.length !== 0) {
          return;
       }
       try {
@@ -48,7 +48,7 @@ export default function Login ({ onSubmit }) {
                         required
                         placeholder='pochta@yandex.ru|' />
                      <span className='login__input-error'>
-                        {(email.isDirty && email.errors.lenght !== 0) && email.errors.map(error => (error))}
+                        {(email.isDirty && email.errors.length !== 0) && email.errors.map(error => (error))}
                      </span>
                   </label>
                   <label className='login__label'>
@@ -66,7 +66,7 @@ export default function Login ({ onSubmit }) {
                         maxLength='30'
                         placeholder='Пароль' />
                      <span className='login__input-error'>
-                        {(password.isDirty && password.errors.lenght !== 0) && password.errors.map(error => (error))}
+                        {(password.isDirty && password.errors.length !== 0) && password.errors.map(error => (error))}
                      </span>
                   </label>
                   <div className='profile__show-message'>

@@ -14,7 +14,7 @@ export default function Profile ({ loggedIn, signOut, onSubmit }) {
 
    const handleProfile = async (e) => {
       e.preventDefault();
-      if (!name.value || !email.value) {
+      if (name.errors.length !== 0 || email.errors.length !== 0) {
          return;
       }
       try {
@@ -65,7 +65,7 @@ export default function Profile ({ loggedIn, signOut, onSubmit }) {
                            />
                      </label>
                      <div className='profile__input-error profile__input-error_name'>
-                        {(name.isDirty && name.errors.lenght !== 0) && name.errors.map(error => (error))}
+                        {(name.isDirty && name.errors.length !== 0) && name.errors.map(error => (error))}
                      </div>
                      <label className='profile__label'>
                         E-mail
@@ -81,7 +81,7 @@ export default function Profile ({ loggedIn, signOut, onSubmit }) {
                            />
                      </label>
                      <div className='profile__input-error profile__input-error_email'>
-                        {(email.isDirty && email.errors.lenght !== 0) && email.errors.map(error => (error))}
+                        {(email.isDirty && email.errors.length !== 0) && email.errors.map(error => (error))}
                      </div>
                      <div className='profile__show-message'>
                      {serverMessage &&                         
@@ -92,7 +92,7 @@ export default function Profile ({ loggedIn, signOut, onSubmit }) {
                      (<div className='profile__error-message'>
                            {errorMessage}
                      </div>)}
-                        <button disabled={currentUser.name === name.value && currentUser.email === email.value} type='submit' className='profile__button'>Редактировать</button>
+                        <button disabled={(currentUser.name === name.value && currentUser.email === email.value) || email.errors.length !==0 || name.errors.length !==0} type='submit' className='profile__button'>Редактировать</button>
                         <button onClick={signOut} to='/' title='На главную' className='profile__button profile__button-signout'>Выйти из аккаунта</button>
                      </div>
                   </fieldset>

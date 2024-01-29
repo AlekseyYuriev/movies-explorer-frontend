@@ -14,7 +14,7 @@ export default function Register ({ onSubmit }) {
 
    const handleRegister = async (e) => {
       e.preventDefault();
-      if (!name.value || !email.value || !password.value) {
+      if (name.errors.length !== 0 || email.errors.length !== 0 || password.errors.length !== 0) {
          return;
       }
       try {
@@ -52,7 +52,7 @@ export default function Register ({ onSubmit }) {
                         maxLength='30'
                         placeholder='Виталий' />
                      <span className='register__input-error'>
-                        {(name.isDirty && name.errors.lenght !== 0) && name.errors.map(error => (error))}
+                        {(name.isDirty && name.errors.length !== 0) && name.errors.map(error => (error))}
                      </span>
                   </label>
                   <label className='register__label'>
@@ -68,7 +68,7 @@ export default function Register ({ onSubmit }) {
                         required
                         placeholder='pochta@yandex.ru|' />
                      <span className='register__input-error'>
-                        {(email.isDirty && email.errors.lenght !== 0) && email.errors.map(error => (error))}
+                        {(email.isDirty && email.errors.length !== 0) && email.errors.map(error => (error))}
                      </span>
                   </label>
                   <label className='register__label'>
@@ -86,7 +86,7 @@ export default function Register ({ onSubmit }) {
                         maxLength='30'
                         placeholder='••••••••••••••' />
                      <span className='register__input-error'>
-                        {(password.isDirty && password.errors.lenght !== 0) && password.errors.map(error => (error))}
+                        {(password.isDirty && password.errors.length !== 0) && password.errors.map(error => (error))}
                      </span>
                   </label>
                   <div className='profile__show-message'>
@@ -97,6 +97,7 @@ export default function Register ({ onSubmit }) {
                   <button 
                      type='submit' 
                      className='register__button'
+                     disabled={email.errors.length !==0 || password.errors.length !==0}
                   >
                      Зарегистрироваться</button>
                      </div>
