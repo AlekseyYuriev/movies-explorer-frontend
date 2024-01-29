@@ -23,6 +23,9 @@ function App() {
 
   const tokenCheck = useCallback(async (token) => {
     try {
+      if (!token) {
+        return
+      }
       const userData = await checkToken(token);
       setLoggedIn(true);
       setCurrentUser(userData);
