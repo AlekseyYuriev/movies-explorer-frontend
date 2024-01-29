@@ -61,7 +61,7 @@ export default function MoviesCard ({
 
    return (
       <div className="card">
-      <a href={trailerLink} target="_blank" rel="noreferrer">
+      <a href={trailerLink} target="_blank" rel="noreferrer" className="card__link">
          <img src={image} className="card__image" alt={alt} />
       </a>
          <div className="card__info">

@@ -69,9 +69,9 @@ export default function Login ({ onSubmit }) {
                         {(password.isDirty && password.errors.length !== 0) && password.errors.map(error => (error))}
                      </span>
                   </label>
-                  <div className='profile__show-message'>
+                  <div className='login__show-message'>
                      {errorMessage &&                         
-                     (<div className='profile__error-message'>
+                     (<div className='login__error-message'>
                            {errorMessage}
                      </div>)}
                   <button disabled={email.errors.length !==0 || password.errors.length !==0} type='submit' className='login__button'>Войти</button>

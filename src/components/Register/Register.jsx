@@ -89,9 +89,9 @@ export default function Register ({ onSubmit }) {
                         {(password.isDirty && password.errors.length !== 0) && password.errors.map(error => (error))}
                      </span>
                   </label>
-                  <div className='profile__show-message'>
+                  <div className='register__show-message'>
                      {errorMessage &&                         
-                     (<div className='profile__error-message'>
+                     (<div className='register__error-message'>
                            {errorMessage}
                      </div>)}
                   <button 

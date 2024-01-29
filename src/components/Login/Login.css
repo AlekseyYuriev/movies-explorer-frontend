@@ -67,6 +67,21 @@
    line-height: normal;
 }
 
+.login__show-message {
+   margin-top: 197px;
+}
+
+.login__error-message {
+   display: flex;
+   justify-content: center;
+   height: 24px;
+   color: red;
+   font-size: 12px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: normal;
+}
+
 .login__button {
    max-width: 396px;
    width: 100%;
@@ -80,7 +95,7 @@
    font-weight: 500;
    line-height: normal;
    border: none;
-   margin: 197px 0 16px;
+   margin: 0 0 16px;
    padding: 0;
    transition: all 0.3s;
 }
@@ -146,8 +161,12 @@
       max-width: 260px;
    }
 
+   .login__show-message {
+      margin-top: 285px;
+   }
+
    .login__button {
-      margin: 285px 0 14px;
+      margin: 0 0 14px;
       font-size: 12px;
    }
 

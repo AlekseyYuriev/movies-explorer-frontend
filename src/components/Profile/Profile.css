@@ -74,17 +74,29 @@
 }
 
 .profile__show-message {
-   margin-top: 191px;
+   margin-top: 208px;
 }
 
 .profile__server-message {
+   display: flex;
+   justify-content: center;
    height: 24px;
    color: green;
+   font-size: 12px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: normal;
 }
 
 .profile__error-message {
+   display: flex;
+   justify-content: center;
    height: 24px;
    color: red;
+   font-size: 12px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: normal;
 }
 
 .profile__button {
@@ -133,6 +145,10 @@
       font-weight: 500;
       margin: 16px auto 0;
    }
+
+   .profile__show-message {
+      margin-top: 198px;
+   }
 }
 
 @media screen and (max-width: 400px) {
@@ -156,11 +172,23 @@
    }
    
    .profile__button {
-      margin: 372px 0 16px 0;
+      margin: 0 0 16px 0;
       font-size: 12px;
    }
 
    .profile__button-signout {
       margin: 0 auto;
+   }
+
+   .profile__show-message {
+      margin-top: 363px;
+   }
+
+   .profile__server-message {
+      font-size: 10px;
+   }
+   
+   .profile__error-message {
+      font-size: 10px;
    }
 }
