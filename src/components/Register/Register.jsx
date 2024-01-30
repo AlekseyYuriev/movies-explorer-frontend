@@ -5,7 +5,7 @@ import headerLogo from '../../images/logo.svg';
 import { useInput } from '../../hooks/customHookValidation';
 import { EMAIL_DATA_ERROR_MESSAGE, REGISTER_ERROR_MESSAGE } from '../../utils/constants';
 
-export default function Register ({ onSubmit }) {
+export default function Register ({ onSubmit, isLoading }) {
 
    const name = useInput('', {isEmpty: true, isName: true, minLength: 2});
    const email = useInput('', {isEmpty: true, isEmail: true});
@@ -98,7 +98,7 @@ export default function Register ({ onSubmit }) {
                   <button 
                      type='submit' 
                      className='register__button'
-                     disabled={email.errors.length !==0 || password.errors.length !==0}
+                     disabled={email.errors.length !==0 || password.errors.length !==0 || isLoading}
                   >
                      Зарегистрироваться</button>
                      </div>

@@ -5,7 +5,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useInput } from '../../hooks/customHookValidation';
 import { EMAIL_DATA_ERROR_MESSAGE, USER_DATA_ERROR_MESSAGE, USER_DATA_SUCCESS_MESSAGE } from '../../utils/constants';
 
-export default function Profile ({ loggedIn, signOut, onSubmit }) {
+export default function Profile ({ loggedIn, signOut, onSubmit, isLoading }) {
 
    const currentUser = useContext(CurrentUserContext);
    const name = useInput(currentUser.name, {isEmpty: true, minLength: 2, isName: true});
@@ -93,7 +93,7 @@ export default function Profile ({ loggedIn, signOut, onSubmit }) {
                      (<div className='profile__error-message'>
                            {errorMessage}
                      </div>)}
-                        <button disabled={(currentUser.name === name.value && currentUser.email === email.value) || email.errors.length !==0 || name.errors.length !==0} type='submit' className='profile__button'>Редактировать</button>
+                        <button disabled={(currentUser.name === name.value && currentUser.email === email.value) || email.errors.length !==0 || name.errors.length !==0 || isLoading} type='submit' className='profile__button'>Редактировать</button>
                         <button onClick={signOut} to='/' title='На главную' className='profile__button profile__button-signout'>Выйти из аккаунта</button>
                      </div>
                   </fieldset>

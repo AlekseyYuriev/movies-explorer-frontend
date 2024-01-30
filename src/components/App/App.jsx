@@ -18,6 +18,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [isCheckingToken, setIsCheckingToken] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -45,18 +46,28 @@ function App() {
   }, [isCheckingToken, loggedIn, tokenCheck]);
 
   const handleLogin = async (email, password) => {
+    try {
+      setIsLoading(true);
       const user = await login(email, password);
       localStorage.setItem('token', user.token);
       await tokenCheck(user.token);
       setLoggedIn(true);
       navigate('/movies');
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   const createUser = async (name, email, password) => {
+    try {
+      setIsLoading(true);
       const user = await register(name, email, password);
       await handleLogin(user.email, password);
       setLoggedIn(true);
       navigate('/movies');
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   const signOut = () => {
@@ -67,8 +78,13 @@ function App() {
   }
 
   const changeUserData = async (name, email) => {
+    try {
+      setIsLoading(true);
       const newUserData = await updateUser(name, email);
       setCurrentUser(newUserData);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   if(isCheckingToken) {
@@ -76,7 +92,7 @@ function App() {
   }
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={currentUser} >
       <div className="page">
         <Routes>
           <Route 
@@ -86,9 +102,9 @@ function App() {
                 loggedIn={loggedIn}
               />} 
             />
-          <Route path={'/signup'} element={loggedIn ? <Navigate to='/' replace /> : <Register onSubmit={createUser} />}
+          <Route path='/signup' element={loggedIn ? <Navigate to='/' replace /> : <Register onSubmit={createUser} isLoading={isLoading} />}
           />
-          <Route path='/signin' element={loggedIn ? <Navigate to='/' replace /> : <Login onSubmit={handleLogin} />}
+          <Route path='/signin' element={loggedIn ? <Navigate to='/' replace /> : <Login onSubmit={handleLogin} isLoading={isLoading} />}
           />
           <Route 
             path='/profile'
@@ -98,6 +114,7 @@ function App() {
                 loggedIn={loggedIn}
                 signOut={signOut}
                 onSubmit={changeUserData}
+                isLoading={isLoading}
               />}
           />
           <Route 

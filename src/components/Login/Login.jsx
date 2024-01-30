@@ -5,7 +5,7 @@ import headerLogo from '../../images/logo.svg';
 import { useInput } from '../../hooks/customHookValidation';
 import { LOGIN_ERROR_MESSAGE, LOGIN_VALIDATION_ERROR_MESSAGE } from '../../utils/constants';
 
-export default function Login ({ onSubmit }) {
+export default function Login ({ onSubmit, isLoading }) {
 
    const email = useInput('', {isEmpty: true, isEmail: true});
    const password = useInput('', {isEmpty: true, minLength: 5});
@@ -75,7 +75,7 @@ export default function Login ({ onSubmit }) {
                      (<div className='login__error-message'>
                            {errorMessage}
                      </div>)}
-                  <button disabled={email.errors.length !==0 || password.errors.length !==0} type='submit' className='login__button'>Войти</button>
+                  <button disabled={email.errors.length !==0 || password.errors.length !==0 || isLoading} type='submit' className='login__button'>Войти</button>
                   </div>
                   <p className='login__text'>
                      Ещё не зарегистрированы?
