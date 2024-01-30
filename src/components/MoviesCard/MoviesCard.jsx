@@ -22,7 +22,7 @@ export default function MoviesCard ({
    onMovieSaved 
 }) {
 
-   let location = useLocation();
+   const location = useLocation();
 
    const durationHours = Math.floor(duration/60);
    const durationMinutes = duration%60 > 0 ? `${duration%60}м` : '';
