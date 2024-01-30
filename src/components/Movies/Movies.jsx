@@ -3,10 +3,9 @@ import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
-import { getMovies, getSavedMovies } from "../../utils/MoviesApi";
-import { DURATION_SHORT_MOVIES } from "../../utils/constants";
 import Preloader from "../Preloader/Preloader";
-import { getFilterCheckbox, getTextSearch } from "../../utils/localStorageManager";
+import { getFilterCheckbox, getTextSearch, loadAllMovies, loadAllSavedMovies, setupSavedMovies } from "../../utils/localStorageManager";
+import { filterFunction } from "../../utils/filterFunction";
 
 export default function Movies ({ loggedIn }) {
 
@@ -20,23 +19,7 @@ export default function Movies ({ loggedIn }) {
 
    const filterMovies = useCallback((text, filterActive) => {
 
-      let filteredMovies = allMovies;
-
-      if (filterActive) {
-         filteredMovies = filteredMovies.filter((movie) => {
-            if(movie.duration <= DURATION_SHORT_MOVIES) {
-               return true;
-            }
-            return false;
-         })
-      }
-
-      filteredMovies = filteredMovies.filter((movie) => {
-         if (movie.nameRU.toLowerCase().includes(text.toLowerCase()) || movie.nameEN.toLowerCase().includes(text.toLowerCase())) {
-            return true;
-         }
-         return false;
-      })
+      const filteredMovies = filterFunction(allMovies, text, filterActive);
       setMovies(filteredMovies);
    
    }, [allMovies]);
@@ -53,14 +36,9 @@ export default function Movies ({ loggedIn }) {
 
    const getAllMovies = useCallback(async () => {
       setIsLoading(true);
-      const savedFims = await getSavedMovies();
-      if (localStorage.getItem('films')) {
-         setAllMovies(JSON.parse(localStorage.getItem('films')));
-      } else {
-         const films = await getMovies();
-         setAllMovies(films);
-         localStorage.setItem('films', JSON.stringify(films));
-      }
+      const films = await loadAllMovies();
+      const savedFims = await loadAllSavedMovies();
+      setAllMovies(films);
       setLikedMovies(savedFims);
       setIsLoading(false);
       }, []) 
@@ -79,6 +57,7 @@ export default function Movies ({ loggedIn }) {
    const onMovieSaved = useCallback((newMovie) => {
       const newLikedMovies = [...likedMovies];
       newLikedMovies.push(newMovie);
+      setupSavedMovies(newLikedMovies);
       setLikedMovies(newLikedMovies);
    }, [likedMovies])
 
@@ -86,6 +65,7 @@ export default function Movies ({ loggedIn }) {
       const updatedMovies = [...likedMovies];
       const deletedMovie = updatedMovies.filter(movie => movie._id !== id);
       setLikedMovies(deletedMovie);
+      setupSavedMovies(deletedMovie);
    }, [likedMovies])
 
 

@@ -4,8 +4,8 @@ import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Footer from "../Footer/Footer";
-import { getSavedMovies } from "../../utils/MoviesApi";
-import { DURATION_SHORT_MOVIES } from "../../utils/constants";
+import { filterFunction } from "../../utils/filterFunction";
+import { loadAllSavedMovies, setupSavedMovies } from "../../utils/localStorageManager";
 
 export default function SavedMovies ({ loggedIn }) {
 
@@ -16,23 +16,7 @@ export default function SavedMovies ({ loggedIn }) {
 
    const filterMovies = useCallback((text, filterActive) => {
 
-      let filteredMovies = savedMovies;
-
-      if (filterActive) {
-         filteredMovies = filteredMovies.filter((movie) => {
-            if(movie.duration <= DURATION_SHORT_MOVIES) {
-               return true;
-            }
-            return false;
-         })
-      }
-
-      filteredMovies = filteredMovies.filter((movie) => {
-         if (movie.nameRU.toLowerCase().includes(text.toLowerCase()) || movie.nameEN.toLowerCase().includes(text.toLowerCase())) {
-            return true;
-         }
-         return false;
-      })
+      const filteredMovies = filterFunction(savedMovies, text, filterActive);
       setMovies(filteredMovies);
    
    }, [savedMovies]);
@@ -49,7 +33,7 @@ export default function SavedMovies ({ loggedIn }) {
 
    useEffect(() => {
       async function getAllSavedMovies() {
-         const savedFilms = await getSavedMovies();
+         const savedFilms = await loadAllSavedMovies();
          setSavedMovies(savedFilms);
          setMovies(savedFilms);
       }
@@ -64,6 +48,7 @@ export default function SavedMovies ({ loggedIn }) {
       const updatedMovies = [...savedMovies];
       const deletedMovie = updatedMovies.filter(movie => movie._id !== id);
       setSavedMovies(deletedMovie);
+      setupSavedMovies(deletedMovie);
    }, [savedMovies])
 
    return (
