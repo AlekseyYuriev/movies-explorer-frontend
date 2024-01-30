@@ -56,11 +56,14 @@ export default function SavedMovies ({ loggedIn }) {
       getAllSavedMovies();
    }, [])
 
+   useEffect(() => {
+      filterMovies(text, filterActive);
+   }, [filterActive, filterMovies, text])
+
    const onMovieDeleted = useCallback((id) => {
       const updatedMovies = [...savedMovies];
       const deletedMovie = updatedMovies.filter(movie => movie._id !== id);
       setSavedMovies(deletedMovie);
-      setMovies(deletedMovie);
    }, [savedMovies])
 
    return (
@@ -73,7 +76,8 @@ export default function SavedMovies ({ loggedIn }) {
             />
             <section className="savedmovies">
                <div className="savedmovies__list">
-                  {movies.map(savedMovie => 
+               {movies.length===0 ? (<span className='savedcards__empty'>Ничего не найдено</span>) :
+               movies.map(savedMovie => 
                   <MoviesCard 
                      image={savedMovie.image}
                      text={savedMovie.nameRU} 
@@ -92,7 +96,9 @@ export default function SavedMovies ({ loggedIn }) {
                      id={savedMovie._id}
                      onMovieDeleted={onMovieDeleted}
                   />
-                  )}
+                  )
+               }
+
                </div>
             </section>
             </main>
