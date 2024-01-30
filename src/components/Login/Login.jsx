@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Login.css';
 import headerLogo from '../../images/logo.svg';
 import { useInput } from '../../hooks/customHookValidation';
+import { LOGIN_ERROR_MESSAGE, LOGIN_VALIDATION_ERROR_MESSAGE } from '../../utils/constants';
 
 export default function Login ({ onSubmit }) {
 
@@ -19,9 +20,9 @@ export default function Login ({ onSubmit }) {
          await onSubmit(email.value, password.value);
       } catch (error) {
          if (error.statusCode === 401) {
-            setErrorMessage('Вы ввели неправильный логин или пароль.')
+            setErrorMessage(LOGIN_VALIDATION_ERROR_MESSAGE)
          } else {
-            setErrorMessage('При авторизации произошла ошибка.')
+            setErrorMessage(LOGIN_ERROR_MESSAGE)
          }
       }
    }

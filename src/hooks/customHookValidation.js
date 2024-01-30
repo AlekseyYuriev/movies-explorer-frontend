@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { INPUT_REQUIRED_ERROR_MESSAGE, EMAIL_FORMAT_ERROR_VALIDATION, NAME_ERROR_VALIDATION } from '../utils/constants';
 
 export const useValidation = (value, validations) => {
 
@@ -12,7 +13,7 @@ export const useValidation = (value, validations) => {
          switch (validation) {
             case 'isEmpty':
                if (!value) {
-                  errors.push('Поле не может быть пустым. ')
+                  errors.push(INPUT_REQUIRED_ERROR_MESSAGE)
                }
                break;
             case 'minLength':
@@ -28,13 +29,13 @@ export const useValidation = (value, validations) => {
             case 'isEmail':
                const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                if (!re.test(String(value).toLowerCase())) {
-                  errors.push('Некорректный E-mail. ')
+                  errors.push(EMAIL_FORMAT_ERROR_VALIDATION)
                }
                break
             case 'isName':
                const letters = /^[А-яЁёA-Za-z -]+$/;
                if(!letters.test(String(value).toLowerCase())) {
-                  errors.push('Поле должно содержит только латиницу, кириллицу, пробел или дефис.')
+                  errors.push(NAME_ERROR_VALIDATION)
                }
                break
             default: break

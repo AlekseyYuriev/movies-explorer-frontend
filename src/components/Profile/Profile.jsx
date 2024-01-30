@@ -3,6 +3,7 @@ import Header from '../Header/Header';
 import './Profile.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useInput } from '../../hooks/customHookValidation';
+import { EMAIL_DATA_ERROR_MESSAGE, USER_DATA_ERROR_MESSAGE, USER_DATA_SUCCESS_MESSAGE } from '../../utils/constants';
 
 export default function Profile ({ loggedIn, signOut, onSubmit }) {
 
@@ -19,12 +20,12 @@ export default function Profile ({ loggedIn, signOut, onSubmit }) {
       }
       try {
          await onSubmit(name.value, email.value)
-         setServerMessage('Данные успешно изменены')
+         setServerMessage(USER_DATA_SUCCESS_MESSAGE)
       } catch (error) {
          if (error.statusCode === 409) {
-            setErrorMessage('Пользователь с таким email уже существует.')
+            setErrorMessage(EMAIL_DATA_ERROR_MESSAGE)
          } else {
-            setErrorMessage('При обновлении профиля произошла ошибка.')
+            setErrorMessage(USER_DATA_ERROR_MESSAGE)
          }
       }
    }

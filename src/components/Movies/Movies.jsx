@@ -6,13 +6,14 @@ import Footer from "../Footer/Footer";
 import { getMovies, getSavedMovies } from "../../utils/MoviesApi";
 import { DURATION_SHORT_MOVIES } from "../../utils/constants";
 import Preloader from "../Preloader/Preloader";
+import { getFilterCheckbox, getTextSearch } from "../../utils/localStorageManager";
 
 export default function Movies ({ loggedIn }) {
 
    const [movies, setMovies] = useState([]);
    const [allMovies, setAllMovies] = useState([]);
-   const [text, setText] = useState('');
-   const [filterActive, setFilterActive] = useState(false);
+   const [text, setText] = useState(getTextSearch());
+   const [filterActive, setFilterActive] = useState(getFilterCheckbox());
    const [isLoading, setIsLoading] = useState(false);
    const [likedMovies, setLikedMovies] = useState([]);
    const [inputError, setInputError] = useState(false);
@@ -71,7 +72,7 @@ export default function Movies ({ loggedIn }) {
 
    useEffect(() => {
       if(localStorage.getItem('textSearch') || localStorage.getItem('filterCheckbox')) {
-         filterMovies(localStorage.getItem('textSearch'), localStorage.getItem('filterCheckbox')==='true')
+         filterMovies(getTextSearch(), getFilterCheckbox())
       }
    }, [filterMovies])
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import './SearchForm.css';
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import { useLocation } from "react-router-dom";
+import { getFilterCheckbox, getTextSearch } from "../../utils/localStorageManager";
 
 export default function SearchForm ({ onTextSearch, onDurationSearch, setInputError }) {
 
@@ -11,8 +12,8 @@ export default function SearchForm ({ onTextSearch, onDurationSearch, setInputEr
    let defaultChecked = false;
 
    if (location.pathname==='/movies') {
-      defaultInputValue = localStorage.getItem('textSearch') || '';
-      defaultChecked = localStorage.getItem('filterCheckbox') || false;
+      defaultInputValue = getTextSearch();
+      defaultChecked = getFilterCheckbox();
    }
 
    const [inputValue, setInputValue] = useState(defaultInputValue);

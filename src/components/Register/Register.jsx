@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Register.css';
 import headerLogo from '../../images/logo.svg';
 import { useInput } from '../../hooks/customHookValidation';
+import { EMAIL_DATA_ERROR_MESSAGE, REGISTER_ERROR_MESSAGE } from '../../utils/constants';
 
 export default function Register ({ onSubmit }) {
 
@@ -21,9 +22,9 @@ export default function Register ({ onSubmit }) {
          await onSubmit(name.value, email.value, password.value)
       } catch (error) {
          if (error.statusCode === 409) {
-            setErrorMessage('Пользователь с таким email уже существует.')
+            setErrorMessage(EMAIL_DATA_ERROR_MESSAGE)
          } else {
-            setErrorMessage('При регистрации пользователя произошла ошибка.')
+            setErrorMessage(REGISTER_ERROR_MESSAGE)
          }
       }
    }
