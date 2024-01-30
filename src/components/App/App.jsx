@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import './App.css';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useState } from 'react';
 import Main from '../Main/Main';
@@ -86,19 +86,9 @@ function App() {
                 loggedIn={loggedIn}
               />} 
             />
-          <Route 
-            path='/signup' 
-            element={
-              <Register
-                onSubmit={createUser}
-              />}
+          <Route path={'/signup'} element={loggedIn ? <Navigate to='/' replace /> : <Register onSubmit={createUser} />}
           />
-          <Route 
-            path='/signin' 
-            element={
-              <Login
-                onSubmit={handleLogin}
-              />}
+          <Route path='/signin' element={loggedIn ? <Navigate to='/' replace /> : <Login onSubmit={handleLogin} />}
           />
           <Route 
             path='/profile'
