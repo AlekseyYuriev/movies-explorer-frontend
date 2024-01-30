@@ -22,7 +22,7 @@ function App() {
 
   const navigate = useNavigate();
 
-  const tokenCheck = useCallback(async (token) => {
+  const checkJWT = useCallback(async (token) => {
     try {
       if (!token) {
         return
@@ -41,16 +41,16 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token')
     if ((token && !loggedIn) || isCheckingToken) {
-      tokenCheck(token);
+      checkJWT(token);
     }
-  }, [isCheckingToken, loggedIn, tokenCheck]);
+  }, [isCheckingToken, loggedIn, checkJWT]);
 
   const handleLogin = async (email, password) => {
     try {
       setIsLoading(true);
       const user = await login(email, password);
       localStorage.setItem('token', user.token);
-      await tokenCheck(user.token);
+      await checkJWT(user.token);
       setLoggedIn(true);
       navigate('/movies');
     } finally {

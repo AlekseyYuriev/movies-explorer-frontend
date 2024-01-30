@@ -11,7 +11,7 @@ export default function Header ({ loggedIn }) {
    const location = useLocation();
    const [isOpen, setIsOpen] = useState(false);
 
-   const burgerMenu = () => {
+   const handleBurgerMenu = () => {
       setIsOpen(!isOpen);
    };
 
@@ -58,13 +58,13 @@ export default function Header ({ loggedIn }) {
                      <img className='header__profile-image' src={location.pathname===`/` ? profile : profileMovies} alt='Профиль' />
                   </Link>
                   {location.pathname===`/` ? (
-                     <button type='button' className={isOpen ? 'header__nav-button opened' : 'header__nav-button'} onClick={burgerMenu}>
+                     <button type='button' className={isOpen ? 'header__nav-button opened' : 'header__nav-button'} onClick={handleBurgerMenu}>
                         <span className={isOpen ? 'header__nav-icon clicked' : 'header__nav-icon'}></span>
                         <span className={isOpen ? 'header__nav-icon clicked' : 'header__nav-icon'}></span>
                         <span className={isOpen ? 'header__nav-icon clicked' : 'header__nav-icon'}></span>
                      </button>
                   ) : (
-                     <button type='button' className={isOpen ? 'header__nav-button header__nav-button_movies opened' : 'header__nav-button header__nav-button_movies'} onClick={burgerMenu}>
+                     <button type='button' className={isOpen ? 'header__nav-button header__nav-button_movies opened' : 'header__nav-button header__nav-button_movies'} onClick={handleBurgerMenu}>
                         <span className={isOpen ? 'header__nav-icon clicked' : 'header__nav-icon movies'}></span>
                         <span className={isOpen ? 'header__nav-icon clicked' : 'header__nav-icon movies'}></span>
                         <span className={isOpen ? 'header__nav-icon clicked' : 'header__nav-icon movies'}></span>
