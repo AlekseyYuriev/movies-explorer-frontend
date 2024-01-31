@@ -54,13 +54,14 @@
 }
 
 .profile__input-error {
+   text-align: end;
+   height: 12px;
    min-height: 10px;
    color: #FF3055;
    font-size: 9px;
    font-style: normal;
    font-weight: 400;
    line-height: normal;
-   text-align: start;
 }
 
 .profile__input-error_name {
@@ -70,6 +71,32 @@
 
 .profile__input-error_email {
    border-bottom: none;
+}
+
+.profile__show-message {
+   margin-top: 208px;
+}
+
+.profile__server-message {
+   display: flex;
+   justify-content: center;
+   height: 24px;
+   color: green;
+   font-size: 12px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: normal;
+}
+
+.profile__error-message {
+   display: flex;
+   justify-content: center;
+   height: 24px;
+   color: red;
+   font-size: 12px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: normal;
 }
 
 .profile__button {
@@ -83,7 +110,6 @@
    font-weight: 400;
    line-height: normal;
    border: none;
-   margin-top: 215px;
    padding: 0;
    background-color: transparent;
    transition: all 0.3s;
@@ -92,6 +118,10 @@
 .profile__button:hover {
    cursor: pointer;
    opacity: 0.8;
+}
+
+.profile__button:disabled {
+   color: #C2C2C2;
 }
 
 .profile__button-signout {
@@ -109,15 +139,15 @@
    .profile__title {
       margin: 0 auto 96px;
    }
-   
-   .profile__button {
-      margin-top: 200px;
-   }
 
    .profile__button-signout {
       color: #FF3055;
       font-weight: 500;
       margin: 16px auto 0;
+   }
+
+   .profile__show-message {
+      margin-top: 198px;
    }
 }
 
@@ -142,11 +172,23 @@
    }
    
    .profile__button {
-      margin: 372px 0 16px 0;
+      margin: 0 0 16px 0;
       font-size: 12px;
    }
 
    .profile__button-signout {
       margin: 0 auto;
+   }
+
+   .profile__show-message {
+      margin-top: 363px;
+   }
+
+   .profile__server-message {
+      font-size: 10px;
+   }
+   
+   .profile__error-message {
+      font-size: 10px;
    }
 }

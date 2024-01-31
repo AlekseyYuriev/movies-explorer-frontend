@@ -63,13 +63,27 @@
 
 .register__input-error {
    display: block;
-   min-height: 18px;
+   min-height: 24px;
    color: #FF3055;
    font-size: 10px;
    font-style: normal;
    font-weight: 400;
    line-height: normal;
-   margin-top: 6px;
+}
+
+.register__show-message {
+   margin-top: 126px;
+}
+
+.register__error-message{
+   display: flex;
+   justify-content: center;
+   height: 24px;
+   color: red;
+   font-size: 12px;
+   font-style: normal;
+   font-weight: 400;
+   line-height: normal;
 }
 
 .register__button {
@@ -85,7 +99,7 @@
    font-weight: 500;
    line-height: normal;
    border: none;
-   margin: 126px 0 16px;
+   margin: 0 0 16px;
    padding: 0;
    transition: all 0.3s;
 }
@@ -93,6 +107,11 @@
 .register__button:hover {
    cursor: pointer;
    opacity: 0.8;
+}
+
+.register__button:disabled {
+   background: #F8F8F8;
+   color: #C2C2C2;
 }
 
 .register__text {
@@ -146,8 +165,16 @@
       max-width: 260px;
    }
 
+   .register__show-message {
+      margin-top: 216px;
+   }
+
+   .register__error-message{
+      font-size: 10px;
+   }
+
    .register__button {
-      margin: 217px 0 14px;
+      margin: 0 0 14px;
       font-size: 12px;
    }
 
