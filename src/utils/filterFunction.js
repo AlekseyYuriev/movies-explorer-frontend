@@ -21,3 +21,19 @@ export const filterFunction = (movieArr, text, filterActive) => {
    })
    return filteredMovies;
 }
+
+
+
+export const filterFunctionBySelect = (movieArr, select) => {
+
+   let selectedMovies = movieArr;
+
+   selectedMovies = selectedMovies.filter((movie) => {
+      if (movie.country===select) {
+         return true;
+      }
+      return false;
+   })
+
+   return selectedMovies;
+}

@@ -5,7 +5,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 import Preloader from "../Preloader/Preloader";
 import { getFilterCheckbox, getTextSearch, loadAllMovies, loadAllSavedMovies, setupSavedMovies } from "../../utils/localStorageManager";
-import { filterFunction } from "../../utils/filterFunction";
+import { filterFunction, filterFunctionBySelect } from "../../utils/filterFunction";
 import Select from "../Select/Select";
 
 export default function Movies ({ loggedIn }) {
@@ -70,6 +70,31 @@ export default function Movies ({ loggedIn }) {
    }, [likedMovies])
 
 
+
+
+
+
+   const [select, setSelect] = useState('');
+
+   const filterMoviesBySelect = useCallback((select) => {
+
+      const selectedMovies = filterFunctionBySelect(allMovies, select);
+      setMovies(selectedMovies);
+   
+   }, [allMovies]);
+
+
+   const onSelectSearch = useCallback((newSelect) => {
+      setSelect(newSelect);
+      filterMoviesBySelect(newSelect);
+   }, [filterMoviesBySelect]);
+
+
+
+
+
+
+
    return (
       <>
          <Header loggedIn={loggedIn} />
@@ -79,7 +104,7 @@ export default function Movies ({ loggedIn }) {
                onTextSearch={onTextSearch}
                setInputError={setInputError} 
             />
-            <Select />
+            <Select movies={movies} onSelectSearch={onSelectSearch} />
             {isLoading ? <Preloader /> : <MoviesCardList movies={movies} likedMovies={likedMovies} onMovieSaved={onMovieSaved} onMovieDeleted={onMovieDeleted} inputError={inputError}/>}
          </main>
          <Footer />
