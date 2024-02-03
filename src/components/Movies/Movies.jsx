@@ -6,6 +6,7 @@ import Footer from "../Footer/Footer";
 import Preloader from "../Preloader/Preloader";
 import { getFilterCheckbox, getTextSearch, loadAllMovies, loadAllSavedMovies, setupSavedMovies } from "../../utils/localStorageManager";
 import { filterFunction } from "../../utils/filterFunction";
+import Select from "../Select/Select";
 
 export default function Movies ({ loggedIn }) {
 
@@ -78,6 +79,7 @@ export default function Movies ({ loggedIn }) {
                onTextSearch={onTextSearch}
                setInputError={setInputError} 
             />
+            <Select />
             {isLoading ? <Preloader /> : <MoviesCardList movies={movies} likedMovies={likedMovies} onMovieSaved={onMovieSaved} onMovieDeleted={onMovieDeleted} inputError={inputError}/>}
          </main>
          <Footer />
