@@ -21,6 +21,15 @@ export default function Select ({ movies, onSelectSearch }) {
                <option className="select__option" value="Бразилия">Бразилия</option>
                <option className="select__option" value="Германия">Германия</option>
                <option className="select__option" value="Польша">Польша</option>
+               <option className="select__option" value="Нидерланды">Нидерланды</option>
+               <option className="select__option" value="Россия">Россия</option>
+               <option className="select__option" value="Испания">Испания</option>
+               <option className="select__option" value="Украина">Украина</option>
+               <option className="select__option" value="Швеция">Швеция</option>
+               <option className="select__option" value="Франция">Франция</option>
+               <option className="select__option" value="Ирландия">Ирландия</option>
+               <option className="select__option" value="Дания">Дания</option>
+               <option className="select__option" value="Исландия">Исландия</option>
             </select>
       </label>
    )
