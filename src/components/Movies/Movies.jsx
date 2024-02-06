@@ -90,9 +90,10 @@ export default function Movies ({ loggedIn }) {
    }, [filterMoviesBySelect]);
 
 
-
-
-
+// Найти все уникальные элементы массива ???
+// Set - для зачади + Map (разобраться с коллекциями)
+// Алгоритмическая сложность (О n)
+// Циклы. Когда нужен return
 
 
    return (
