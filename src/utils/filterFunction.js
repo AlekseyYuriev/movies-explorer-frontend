@@ -1,6 +1,6 @@
 import { DURATION_SHORT_MOVIES } from "./constants";
 
-export const filterFunction = (movieArr, text, filterActive) => {
+export const filterFunction = (movieArr, text, filterActive, select) => {
 
    let filteredMovies = movieArr;
 
@@ -19,21 +19,29 @@ export const filterFunction = (movieArr, text, filterActive) => {
       }
       return false;
    })
-   return filteredMovies;
-}
 
-
-
-export const filterFunctionBySelect = (movieArr, select) => {
-
-   let selectedMovies = movieArr;
-
-   selectedMovies = selectedMovies.filter((movie) => {
+   filteredMovies = filteredMovies.filter((movie) => {
       if (movie.country===select) {
          return true;
       }
       return false;
    })
 
-   return selectedMovies;
+   return filteredMovies;
 }
+
+
+
+// export const filterFunctionBySelect = (movieArr, select) => {
+
+//    let selectedMovies = movieArr;
+
+//    selectedMovies = selectedMovies.filter((movie) => {
+//       if (movie.country===select) {
+//          return true;
+//       }
+//       return false;
+//    })
+
+//    return selectedMovies;
+// }

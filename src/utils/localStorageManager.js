@@ -8,6 +8,10 @@ export const getTextSearch = () => {
    return localStorage.getItem('textSearch') || '';
 }
 
+export const getSelect = () => {
+   return localStorage.getItem('select') || '';
+}
+
 export const loadAllMovies = async () => {
    if (localStorage.getItem('films')) {
       return JSON.parse(localStorage.getItem('films'));

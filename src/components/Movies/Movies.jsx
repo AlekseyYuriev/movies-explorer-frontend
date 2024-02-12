@@ -4,9 +4,8 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 import Preloader from "../Preloader/Preloader";
-import { getFilterCheckbox, getTextSearch, loadAllMovies, loadAllSavedMovies, setupSavedMovies } from "../../utils/localStorageManager";
-import { filterFunction, filterFunctionBySelect } from "../../utils/filterFunction";
-import Select from "../Select/Select";
+import { getFilterCheckbox, getTextSearch, getSelect, loadAllMovies, loadAllSavedMovies, setupSavedMovies } from "../../utils/localStorageManager";
+import { filterFunction } from "../../utils/filterFunction";
 
 export default function Movies ({ loggedIn }) {
 
@@ -14,26 +13,32 @@ export default function Movies ({ loggedIn }) {
    const [allMovies, setAllMovies] = useState([]);
    const [text, setText] = useState(getTextSearch());
    const [filterActive, setFilterActive] = useState(getFilterCheckbox());
+   const [select, setSelect] = useState(getSelect());
    const [isLoading, setIsLoading] = useState(false);
    const [likedMovies, setLikedMovies] = useState([]);
    const [inputError, setInputError] = useState(false);
 
-   const filterMovies = useCallback((text, filterActive) => {
+   const filterMovies = useCallback((text, filterActive, select) => {
 
-      const filteredMovies = filterFunction(allMovies, text, filterActive);
+      const filteredMovies = filterFunction(allMovies, text, filterActive, select);
       setMovies(filteredMovies);
    
    }, [allMovies]);
 
    const onTextSearch = useCallback((newText) => {
       setText(newText);
-      filterMovies(newText,filterActive);
-   }, [filterMovies, filterActive]);
+      filterMovies(newText, filterActive, select);
+   }, [filterMovies, filterActive, select]);
 
    const onDurationSearch = useCallback((newFilterActive) => {
       setFilterActive(newFilterActive);
-      filterMovies(text, newFilterActive);
-   }, [filterMovies, text]);
+      filterMovies(text, select, newFilterActive);
+   }, [filterMovies, select, text]);
+
+   const onSelectSearch = useCallback((newSelect) => {
+      setSelect(newSelect);
+      filterMovies(text, filterActive, newSelect);
+   }, [filterMovies, text, filterActive]);
 
    const getAllMovies = useCallback(async () => {
       setIsLoading(true);
@@ -50,8 +55,8 @@ export default function Movies ({ loggedIn }) {
    }, [getAllMovies])
 
    useEffect(() => {
-      if(localStorage.getItem('textSearch') || localStorage.getItem('filterCheckbox')) {
-         filterMovies(getTextSearch(), getFilterCheckbox())
+      if(localStorage.getItem('textSearch') || localStorage.getItem('filterCheckbox') || localStorage.getItem('select')) {
+         filterMovies(getTextSearch(), getFilterCheckbox(), getSelect())
       }
    }, [filterMovies])
 
@@ -69,32 +74,17 @@ export default function Movies ({ loggedIn }) {
       setupSavedMovies(deletedMovie);
    }, [likedMovies])
 
+   // const filterMoviesBySelect = useCallback((select) => {
 
-
-
-
-
-   const [select, setSelect] = useState('');
-
-   const filterMoviesBySelect = useCallback((select) => {
-
-      const selectedMovies = filterFunctionBySelect(allMovies, select);
-      setMovies(selectedMovies);
+   //    const selectedMovies = filterFunctionBySelect(allMovies, select);
+   //    setMovies(selectedMovies);
    
-   }, [allMovies]);
-
-
-   const onSelectSearch = useCallback((newSelect) => {
-      setSelect(newSelect);
-      filterMoviesBySelect(newSelect);
-   }, [filterMoviesBySelect]);
-
+   // }, [allMovies]);
 
 // Найти все уникальные элементы массива ???
 // Set - для зачади + Map (разобраться с коллекциями)
 // Алгоритмическая сложность (О n)
 // Циклы. Когда нужен return
-
 
    return (
       <>
@@ -104,8 +94,8 @@ export default function Movies ({ loggedIn }) {
                onDurationSearch={onDurationSearch}
                onTextSearch={onTextSearch}
                setInputError={setInputError} 
+               onSelectSearch={onSelectSearch}
             />
-            <Select movies={movies} onSelectSearch={onSelectSearch} />
             {isLoading ? <Preloader /> : <MoviesCardList movies={movies} likedMovies={likedMovies} onMovieSaved={onMovieSaved} onMovieDeleted={onMovieDeleted} inputError={inputError}/>}
          </main>
          <Footer />
