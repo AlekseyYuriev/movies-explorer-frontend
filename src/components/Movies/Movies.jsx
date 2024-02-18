@@ -32,7 +32,7 @@ export default function Movies ({ loggedIn }) {
 
    const onDurationSearch = useCallback((newFilterActive) => {
       setFilterActive(newFilterActive);
-      filterMovies(text, select, newFilterActive);
+      filterMovies(text, newFilterActive, select);
    }, [filterMovies, select, text]);
 
    const onSelectSearch = useCallback((newSelect) => {
@@ -50,7 +50,6 @@ export default function Movies ({ loggedIn }) {
       }, []) 
 
    useEffect(() => {
-
       getAllMovies();
    }, [getAllMovies])
 
@@ -74,12 +73,26 @@ export default function Movies ({ loggedIn }) {
       setupSavedMovies(deletedMovie);
    }, [likedMovies])
 
-   // const filterMoviesBySelect = useCallback((select) => {
+   let movieCountries = [];
 
-   //    const selectedMovies = filterFunctionBySelect(allMovies, select);
-   //    setMovies(selectedMovies);
-   
-   // }, [allMovies]);
+   // allMovies.map((film) => {
+   //    movieCountries.push(film.country)
+   //    return movieCountries;
+   // })
+
+   for (let i=0; i < allMovies.length; i++) {
+      movieCountries.push(allMovies[i].country)
+   }
+
+   // console.log(movieCountries);
+
+   const allMoviesSet = new Set(movieCountries);
+
+   const allCountries = Array.from(allMoviesSet)
+
+   // allCountries.unshift(``);
+
+   // console.log(allCountries);
 
 // Найти все уникальные элементы массива ???
 // Set - для зачади + Map (разобраться с коллекциями)
@@ -95,6 +108,7 @@ export default function Movies ({ loggedIn }) {
                onTextSearch={onTextSearch}
                setInputError={setInputError} 
                onSelectSearch={onSelectSearch}
+               allCountries={allCountries}
             />
             {isLoading ? <Preloader /> : <MoviesCardList movies={movies} likedMovies={likedMovies} onMovieSaved={onMovieSaved} onMovieDeleted={onMovieDeleted} inputError={inputError}/>}
          </main>

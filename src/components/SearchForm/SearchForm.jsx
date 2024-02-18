@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import { getFilterCheckbox, getTextSearch, getSelect } from "../../utils/localStorageManager";
 import Select from "../Select/Select";
 
-export default function SearchForm ({ onTextSearch, onDurationSearch, onSelectSearch, setInputError }) {
+export default function SearchForm ({ onTextSearch, onDurationSearch, onSelectSearch, setInputError, allCountries }) {
 
    const location = useLocation();
 
@@ -88,7 +88,8 @@ export default function SearchForm ({ onTextSearch, onDurationSearch, onSelectSe
                initialChecked={defaultChecked} />
             <Select 
                onChange={handleSelect}
-               selectValue={selectValue} />
+               selectValue={selectValue}
+               allCountries={allCountries} />
          </form>
    </section>
    )

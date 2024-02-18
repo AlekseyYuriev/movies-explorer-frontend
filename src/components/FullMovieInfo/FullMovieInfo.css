@@ -1,0 +1,22 @@
+.fullmovie__info {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.movie__image {
+   margin: 30px 0;
+   width: 700px;
+   height: 400px;
+}
+
+.movie__info {
+   max-width: 700px;
+   display: grid;
+   grid-template-columns: 1fr 3fr;
+   gap: 20px;
+}
+
+.movie__text {
+   margin: 0;
+}

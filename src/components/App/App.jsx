@@ -12,6 +12,7 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute';
 import { checkToken, login, register, updateUser } from '../../utils/MainApi';
+import FullMovieInfo from '../FullMovieInfo/FullMovieInfo';
 
 function App() {
 
@@ -118,7 +119,7 @@ function App() {
               />}
           />
           <Route 
-            path='/movies' 
+            exact path='/movies' 
             element={
               <ProtectedRouteElement
                 element={Movies}
@@ -130,6 +131,14 @@ function App() {
             element={
               <ProtectedRouteElement 
                 element={SavedMovies}
+                loggedIn={loggedIn}
+              />}
+          />
+          <Route
+            exact path='/movies/:id'
+            element={
+              <ProtectedRouteElement
+                element={FullMovieInfo}
                 loggedIn={loggedIn}
               />}
           />
