@@ -92,11 +92,15 @@ export default function MoviesCard ({
             <p className="card__duration">
                {durationHours > 0 ? `${durationHours}ч ${durationMinutes}` : durationMinutes}
             </p>
-            <button 
-               onClick={handleClick}
-               to='/full-movie' 
-               className="card__addition-button" >
-                  Подробнее о фильме</button>
+            {location.pathname==="/movies"
+               ? (<button 
+                     onClick={handleClick}
+                     to='/full-movie' 
+                     className="card__addition-button" >
+                        Подробнее о фильме
+                  </button>)
+               : ''
+            }
          </div>
       </div>
    )

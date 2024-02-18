@@ -83,6 +83,7 @@ export default function SavedMovies ({ loggedIn }) {
                {movies.length===0 ? (<span className='savedcards__empty'>Ничего не найдено</span>) :
                movies.map(savedMovie => 
                   <MoviesCard 
+                     movie={savedMovie}
                      image={savedMovie.image}
                      text={savedMovie.nameRU} 
                      key={savedMovie._id}
