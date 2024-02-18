@@ -30,7 +30,7 @@ export default function SavedMovies ({ loggedIn }) {
    const onDurationSearch = useCallback((newFilterActive) => {
       setFilterActive(newFilterActive);
       filterMovies(text, newFilterActive, select);
-   }, [filterMovies, select, text]);
+   }, [filterMovies, text, select]);
 
    const onSelectSearch = useCallback((newSelect) => {
       setSelect(newSelect);
@@ -48,7 +48,7 @@ export default function SavedMovies ({ loggedIn }) {
 
    useEffect(() => {
       filterMovies(text, filterActive, select);
-   }, [filterActive, filterMovies, select, text])
+   }, [filterActive, filterMovies, text, select])
 
    const onMovieDeleted = useCallback((id) => {
       const updatedMovies = [...savedMovies];
@@ -83,7 +83,6 @@ export default function SavedMovies ({ loggedIn }) {
                {movies.length===0 ? (<span className='savedcards__empty'>Ничего не найдено</span>) :
                movies.map(savedMovie => 
                   <MoviesCard 
-                     movie={savedMovie}
                      image={savedMovie.image}
                      text={savedMovie.nameRU} 
                      key={savedMovie._id}
