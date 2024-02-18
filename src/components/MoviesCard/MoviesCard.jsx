@@ -1,9 +1,10 @@
 import React, { useCallback } from "react";
 import './MoviesCard.css';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { deleteMovie, saveMovie } from "../../utils/MoviesApi";
 
 export default function MoviesCard ({ 
+   movie,
    image,
    text,
    saved,
@@ -23,6 +24,11 @@ export default function MoviesCard ({
 }) {
 
    const location = useLocation();
+   let router = useNavigate();
+
+   const handleClick = () => {
+      router(`/movies/${movie.id}`)
+   }
 
    const durationHours = Math.floor(duration/60);
    const durationMinutes = duration%60 > 0 ? `${duration%60}м` : '';
@@ -82,9 +88,19 @@ export default function MoviesCard ({
                />
             )}
          </div>
-         <p className="card__duration">
-            {durationHours > 0 ? `${durationHours}ч ${durationMinutes}` : durationMinutes}
-         </p>
+         <div className="card__addition">
+            <p className="card__duration">
+               {durationHours > 0 ? `${durationHours}ч ${durationMinutes}` : durationMinutes}
+            </p>
+            {location.pathname==="/movies"
+               ? (<button 
+                     onClick={handleClick}
+                     className="card__addition-button" >
+                        Подробнее о фильме
+                  </button>)
+               : ''
+            }
+         </div>
       </div>
    )
 }

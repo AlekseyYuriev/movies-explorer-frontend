@@ -13,6 +13,14 @@ export async function getMovies() {
    return getResponseData(moviesResponse);
 }
 
+export async function getMovieById(id) {
+   const moviesResponse = await fetch(`${MOVIES_URL}/beatfilm-movies/${id}`, {
+      method: 'GET',
+      headers: headerDefault
+   })
+   return getResponseData(moviesResponse);
+}
+
 export async function saveMovie(movie) {
    const savedMovieResponse = await fetch(`${API_URL}/movies`, {
       method: 'POST',

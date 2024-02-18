@@ -4,7 +4,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 import Preloader from "../Preloader/Preloader";
-import { getFilterCheckbox, getTextSearch, loadAllMovies, loadAllSavedMovies, setupSavedMovies } from "../../utils/localStorageManager";
+import { getFilterCheckbox, getTextSearch, getSelect, loadAllMovies, loadAllSavedMovies, setupSavedMovies } from "../../utils/localStorageManager";
 import { filterFunction } from "../../utils/filterFunction";
 
 export default function Movies ({ loggedIn }) {
@@ -13,26 +13,32 @@ export default function Movies ({ loggedIn }) {
    const [allMovies, setAllMovies] = useState([]);
    const [text, setText] = useState(getTextSearch());
    const [filterActive, setFilterActive] = useState(getFilterCheckbox());
+   const [select, setSelect] = useState(getSelect());
    const [isLoading, setIsLoading] = useState(false);
    const [likedMovies, setLikedMovies] = useState([]);
    const [inputError, setInputError] = useState(false);
 
-   const filterMovies = useCallback((text, filterActive) => {
+   const filterMovies = useCallback((text, filterActive, select) => {
 
-      const filteredMovies = filterFunction(allMovies, text, filterActive);
+      const filteredMovies = filterFunction(allMovies, text, filterActive, select);
       setMovies(filteredMovies);
    
    }, [allMovies]);
 
    const onTextSearch = useCallback((newText) => {
       setText(newText);
-      filterMovies(newText,filterActive);
-   }, [filterMovies, filterActive]);
+      filterMovies(newText, filterActive, select);
+   }, [filterMovies, filterActive, select]);
 
    const onDurationSearch = useCallback((newFilterActive) => {
       setFilterActive(newFilterActive);
-      filterMovies(text, newFilterActive);
-   }, [filterMovies, text]);
+      filterMovies(text, newFilterActive, select);
+   }, [filterMovies, select, text]);
+
+   const onSelectSearch = useCallback((newSelect) => {
+      setSelect(newSelect);
+      filterMovies(text, filterActive, newSelect);
+   }, [filterMovies, text, filterActive]);
 
    const getAllMovies = useCallback(async () => {
       setIsLoading(true);
@@ -44,13 +50,12 @@ export default function Movies ({ loggedIn }) {
       }, []) 
 
    useEffect(() => {
-
       getAllMovies();
    }, [getAllMovies])
 
    useEffect(() => {
-      if(localStorage.getItem('textSearch') || localStorage.getItem('filterCheckbox')) {
-         filterMovies(getTextSearch(), getFilterCheckbox())
+      if(localStorage.getItem('textSearch') || localStorage.getItem('filterCheckbox') || localStorage.getItem('select')) {
+         filterMovies(getTextSearch(), getFilterCheckbox(), getSelect())
       }
    }, [filterMovies])
 
@@ -68,6 +73,27 @@ export default function Movies ({ loggedIn }) {
       setupSavedMovies(deletedMovie);
    }, [likedMovies])
 
+   const movieCountries = ['Все фильмы'];
+
+   // allMovies.map((film) => {
+   //    movieCountries.push(film.country)
+   //    return movieCountries;
+   // })
+
+   for (let i=0; i < allMovies.length; i++) {
+      movieCountries.push(allMovies[i].country)
+   }
+
+   const allMoviesSet = new Set(movieCountries);
+
+   const allCountries = Array.from(allMoviesSet)
+
+// Циклы. Когда нужен return
+// Event Loop
+// Жизненный цикл компонента (React)
+// Распарсить страны
+// Добавить все фильмы на страницу Saved films
+// Добавить возможность редактировать данные о фильмах на странице сохранённых фильмах (2 любых поля)
 
    return (
       <>
@@ -77,6 +103,8 @@ export default function Movies ({ loggedIn }) {
                onDurationSearch={onDurationSearch}
                onTextSearch={onTextSearch}
                setInputError={setInputError} 
+               onSelectSearch={onSelectSearch}
+               allCountries={allCountries}
             />
             {isLoading ? <Preloader /> : <MoviesCardList movies={movies} likedMovies={likedMovies} onMovieSaved={onMovieSaved} onMovieDeleted={onMovieDeleted} inputError={inputError}/>}
          </main>

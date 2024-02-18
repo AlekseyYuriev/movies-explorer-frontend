@@ -1,6 +1,6 @@
 import { DURATION_SHORT_MOVIES } from "./constants";
 
-export const filterFunction = (movieArr, text, filterActive) => {
+export const filterFunction = (movieArr, text, filterActive, select) => {
 
    let filteredMovies = movieArr;
 
@@ -19,5 +19,15 @@ export const filterFunction = (movieArr, text, filterActive) => {
       }
       return false;
    })
+
+   filteredMovies = filteredMovies.filter((movie) => {
+      if (movie.country===select) {
+         return true;
+      } else if (select==='Все фильмы') {
+         return true;
+      }
+      return false;
+   })
+
    return filteredMovies;
 }

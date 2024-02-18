@@ -13,23 +13,29 @@ export default function SavedMovies ({ loggedIn }) {
    const [savedMovies, setSavedMovies] = useState([]);
    const [text, setText] = useState('');
    const [filterActive, setFilterActive] = useState(false);
+   const [select, setSelect] = useState('');
 
-   const filterMovies = useCallback((text, filterActive) => {
+   const filterMovies = useCallback((text, filterActive, select) => {
 
-      const filteredMovies = filterFunction(savedMovies, text, filterActive);
+      const filteredMovies = filterFunction(savedMovies, text, filterActive, select);
       setMovies(filteredMovies);
    
    }, [savedMovies]);
 
    const onTextSearch = useCallback((newText) => {
       setText(newText);
-      filterMovies(newText,filterActive);
-   }, [filterMovies, filterActive]);
+      filterMovies(newText,filterActive, select);
+   }, [filterMovies, filterActive, select]);
 
    const onDurationSearch = useCallback((newFilterActive) => {
       setFilterActive(newFilterActive);
-      filterMovies(text, newFilterActive);
-   }, [filterMovies, text]);
+      filterMovies(text, newFilterActive, select);
+   }, [filterMovies, text, select]);
+
+   const onSelectSearch = useCallback((newSelect) => {
+      setSelect(newSelect);
+      filterMovies(text, filterActive, newSelect);
+   }, [filterMovies, text, filterActive]);
 
    useEffect(() => {
       async function getAllSavedMovies() {
@@ -41,8 +47,8 @@ export default function SavedMovies ({ loggedIn }) {
    }, [])
 
    useEffect(() => {
-      filterMovies(text, filterActive);
-   }, [filterActive, filterMovies, text])
+      filterMovies(text, filterActive, select);
+   }, [filterActive, filterMovies, text, select])
 
    const onMovieDeleted = useCallback((id) => {
       const updatedMovies = [...savedMovies];
@@ -51,6 +57,17 @@ export default function SavedMovies ({ loggedIn }) {
       setupSavedMovies(deletedMovie);
    }, [savedMovies])
 
+   let movieCountriesSaved = [];
+
+   savedMovies.map((film) => {
+      movieCountriesSaved.push(film.country)
+      return movieCountriesSaved;
+   })
+
+   const allMoviesSavedSet = new Set(movieCountriesSaved);
+
+   const allCountriesSaved = Array.from(allMoviesSavedSet)
+
    return (
       <>
          <Header loggedIn={loggedIn} />
@@ -58,6 +75,8 @@ export default function SavedMovies ({ loggedIn }) {
             <SearchForm
                onTextSearch={onTextSearch}
                onDurationSearch={onDurationSearch}
+               allCountries={allCountriesSaved}
+               onSelectSearch={onSelectSearch}
             />
             <section className="savedmovies">
                <div className="savedmovies__list">
@@ -83,7 +102,6 @@ export default function SavedMovies ({ loggedIn }) {
                   />
                   )
                }
-
                </div>
             </section>
             </main>

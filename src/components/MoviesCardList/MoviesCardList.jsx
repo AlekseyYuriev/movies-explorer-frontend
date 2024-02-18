@@ -85,6 +85,7 @@ export default function MoviesCardList ({ movies, likedMovies, onMovieSaved, onM
          <div className='cards__list'>
             {movies.slice(0, cardLength).map(movie => 
                <MoviesCard 
+                  movie={movie}
                   image={`${MOVIES_URL}/${movie.image.url}`} 
                   text={movie.nameRU} 
                   key={movie.id} 
