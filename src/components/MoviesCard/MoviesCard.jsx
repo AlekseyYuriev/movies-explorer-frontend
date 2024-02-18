@@ -95,7 +95,6 @@ export default function MoviesCard ({
             {location.pathname==="/movies"
                ? (<button 
                      onClick={handleClick}
-                     to='/full-movie' 
                      className="card__addition-button" >
                         Подробнее о фильме
                   </button>)

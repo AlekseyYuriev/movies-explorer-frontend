@@ -73,7 +73,7 @@ export default function Movies ({ loggedIn }) {
       setupSavedMovies(deletedMovie);
    }, [likedMovies])
 
-   let movieCountries = [];
+   const movieCountries = ['Все фильмы'];
 
    // allMovies.map((film) => {
    //    movieCountries.push(film.country)
@@ -84,20 +84,16 @@ export default function Movies ({ loggedIn }) {
       movieCountries.push(allMovies[i].country)
    }
 
-   // console.log(movieCountries);
-
    const allMoviesSet = new Set(movieCountries);
 
    const allCountries = Array.from(allMoviesSet)
 
-   // allCountries.unshift(``);
-
-   // console.log(allCountries);
-
-// Найти все уникальные элементы массива ???
-// Set - для зачади + Map (разобраться с коллекциями)
-// Алгоритмическая сложность (О n)
 // Циклы. Когда нужен return
+// Event Loop
+// Жизненный цикл компонента (React)
+// Распарсить страны
+// Добавить все фильмы на страницу Saved films
+// Добавить возможность редактировать данные о фильмах на странице сохранённых фильмах (2 любых поля)
 
    return (
       <>

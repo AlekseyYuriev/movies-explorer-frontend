@@ -23,6 +23,8 @@ export const filterFunction = (movieArr, text, filterActive, select) => {
    filteredMovies = filteredMovies.filter((movie) => {
       if (movie.country===select) {
          return true;
+      } else if (select==='Все фильмы') {
+         return true;
       }
       return false;
    })

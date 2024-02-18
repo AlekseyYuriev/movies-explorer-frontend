@@ -9,7 +9,7 @@ export const getTextSearch = () => {
 }
 
 export const getSelect = () => {
-   return localStorage.getItem('select') || '';
+   return localStorage.getItem('select') || 'Все фильмы';
 }
 
 export const loadAllMovies = async () => {

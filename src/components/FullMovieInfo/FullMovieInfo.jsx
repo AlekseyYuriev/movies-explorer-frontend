@@ -10,7 +10,7 @@ import { MOVIES_URL } from "../../utils/constants";
 export default function FullMovieInfo ({ loggedIn }) {
 
    const params = useParams();
-   const [movie, setMovie] = useState({});
+   const [movie, setMovie] = useState(null);
    const [isLoadingMovie, setIsLoadingMovie] = useState(false);
 
    async function getFilmById(id) {
@@ -19,13 +19,6 @@ export default function FullMovieInfo ({ loggedIn }) {
       setMovie(film);
       setIsLoadingMovie(false);
    }
-
-   // const getFilmById = useCallback(async(id) => {
-   //    setIsLoadingMovie(true);
-   //    const film = await getMovieById(id);
-   //    setMovie(film);
-   //    setIsLoadingMovie(false);
-   // }, [])
 
    // const getFilmById = async () => {
    //    setIsLoadingMovie(true)
@@ -37,18 +30,16 @@ export default function FullMovieInfo ({ loggedIn }) {
 
    useEffect(() => {
       getFilmById(params.id);
-   }, [])
+   }, [params.id])
 
    return (
       <>
          <Header loggedIn={loggedIn}/>
-         {isLoadingMovie ? <Preloader /> : (
+         {isLoadingMovie || movie===null ? <Preloader /> : (
             <div className="fullmovie__info">
                   <img 
                      className="movie__image" 
-                     src={movie.image 
-                        ? `${MOVIES_URL}/${movie.image.url}` 
-                        : `https://www.bobrlife.by/wp-content/uploads/2022/11/191127003716744e.jpg`} 
+                     src={`${MOVIES_URL}/${movie.image.url}`}
                      alt={movie.nameRU} />
                   <div className="movie__info">
                      <p className="movie__text">Страна</p>
